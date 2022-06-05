@@ -27,7 +27,12 @@ export default function Carousel(props) {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {props.countries.map((country)=> <SwiperSlide>{country.pais}</SwiperSlide>  )}
+        {props.countries.map((country)=>
+        <SwiperSlide className="SwiperSlide">
+        <div>{country.pais} </div> 
+        <img className="fotos-carousel" src={country.foto} alt="Fotos" /> 
+        <div>{country.ciudad}</div>
+        </SwiperSlide>  )}
         
       </Swiper>
     </>

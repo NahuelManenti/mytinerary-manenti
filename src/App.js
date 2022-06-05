@@ -15,8 +15,8 @@ function App() {
     <div className="App">
       <Navbar/>
       <Main/>
-      <Carousel countries= {Data}/>
       <Header/>
+      <Carousel countries= {Data}/>
       <Footer/>
     </div>
   );

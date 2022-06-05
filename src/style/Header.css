@@ -1,0 +1,23 @@
+.Container{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aquamarine;
+    height: 50vh;
+    margin: 5vh;
+    background-image: url(https://img.freepik.com/foto-gratis/marco-luminoso-rectangular-neon-brillante_250994-283.jpg);
+    background-position: center;
+}
+
+.Container-hijo1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}      
+
+button{
+    margin-top: 10vh;
+}

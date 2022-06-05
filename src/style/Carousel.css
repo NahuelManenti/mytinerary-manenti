@@ -45,3 +45,13 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
+.SwiperSlide{
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+}
+
+.mySwiper{
+  padding: 2vh;
+}
