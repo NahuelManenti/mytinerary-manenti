@@ -1,0 +1,25 @@
+.img-fondo{
+    background-image: url(../components/cities/Paris.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+   
+}
+
+.img-fondo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.h1-main{
+    color: #ff0000;
+    
+    
+}
+.h2-main{
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em
+}

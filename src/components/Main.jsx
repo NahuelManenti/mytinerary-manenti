@@ -1,9 +1,13 @@
 import React from "react";
-import '../style/Allstyle.css';
+import '../style/Main.css';
+
 function Main (){
 
     return(
-        <h1 className="h1-main">Hola mundo soy el Main</h1>
+        <div className="img-fondo">
+            <h2 className="h2-main">Find your perfect trip, designed by insiders who know and love their cities!</h2>
+        </div>
+        
 
 
     )

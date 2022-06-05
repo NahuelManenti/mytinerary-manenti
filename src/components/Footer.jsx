@@ -1,12 +1,15 @@
-import React from "react";
-import '../style/Allstyle.css';
-function Footer (){
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
-    return(
-        <h1 className="h1-footer">Hola mundo soy el {}</h1>
-
-
-    )
+export default function Footer() {
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <Container className='Footer' maxWidth="100">
+        <Box sx={{ bgcolor: '#cfe8fc', height: '15vh' }} />
+      </Container>
+    </React.Fragment>
+  );
 }
-
-export default Footer
