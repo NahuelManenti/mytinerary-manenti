@@ -1,15 +1,16 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import "../style/Footer.css";
 
 export default function Footer() {
   return (
-    <React.Fragment>
+    <div className='container.color'>
+    
       <CssBaseline />
-      <Container className='Footer' maxWidth="100">
-        <Box className='Footer-flex' sx={{ bgcolor: '#cfe8fc', height: '20vh' }}>
+      <div className='Footer' maxWidth="100">
+        <Box className='Footer-flex' sx={{ bgcolor: '#12496e', height: '30vh' }}>
         <div>
           <h3>Redes</h3>
           <div className='ico-flex'>  
@@ -38,8 +39,8 @@ export default function Footer() {
           </div>
         </div>
         </Box> 
-      </Container>
+      </div>
       <h4 className='down-footer'>Copyright © - MYTINERARY All Rights Reserved.</h4>
-    </React.Fragment>
+      </div>
   );
 }

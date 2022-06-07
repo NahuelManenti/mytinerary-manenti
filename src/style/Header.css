@@ -1,23 +1,16 @@
-.Container{
-    color: white;
+.text-await{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-color: aquamarine;
-    height: 50vh;
-    margin: 5vh;
-    background-image: url(https://img.freepik.com/foto-gratis/marco-luminoso-rectangular-neon-brillante_250994-283.jpg);
-    background-position: center;
+    color: rgb(255, 255, 255);
+    justify-content: center;
 }
 
-.Container-hijo1{
+.conteinerHeader{
+    padding: 2vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}      
-
-button{
-    margin-top: 10vh;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #12182c;
 }

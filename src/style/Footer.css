@@ -1,4 +1,10 @@
+.Footer{
+    margin-top: auto;
+   }
+
 .Footer-flex{
+    color: aliceblue;
+    text-shadow: black 0.1em 0.1em 0.2em;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -7,12 +13,14 @@
 
 
 .down-footer{
-    color: white;
-    background-color: black;
     text-align: center;
+    background: #000;
+    color: aliceblue;
+    text-shadow: black 0.1em 0.1em 0.2em;
 }
 
 .ico-flex{
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,8 +28,13 @@
 }
 
 .navigate-flex{
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.container.color{
+    background-color: blue;
 }

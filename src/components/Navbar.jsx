@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
+import '../style/Navbar.css';
+
 
 const pages = ['Home', 'Cities'];
 const settings = ['Log In', 'Sign Up'];
@@ -36,7 +38,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar style={{ background: '#2E3B55' }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AirplanemodeActiveIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
