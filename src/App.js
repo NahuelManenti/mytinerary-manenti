@@ -1,13 +1,10 @@
 import React from 'react';
-import Carousel from './components/Carousel';
 import Footer from './components/Footer';
-import Header from './components/Header';
-import Main from './components/Main';
 import Navbar from './components/Navbar';
-import Data from "./components/json/Data"; //informacion de paises
 import './style/App.css';
-import { Routes } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
+import PaginaCities from './pages/PaginaCities';
+import PaginaHome from './pages/PaginaHome';
 
 
 
@@ -15,12 +12,12 @@ import { Routes } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-        
-            <Main/>
-            <Header/>
-            <Carousel countries= {Data}/>
-          
+     <Navbar/> 
+          <Routes>
+            <Route path='/' element={<PaginaHome />} />
+            <Route path='/cities' element={<PaginaCities />}  />
+            <Route path='/index' element={<PaginaHome />}  />
+          </Routes>
       <Footer/>
     </div>
   );

@@ -12,11 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
+import { Link as LinkRouter } from 'react-router-dom';
 import '../style/Navbar.css';
 
 
-const pages = ['Home', 'Cities'];
 const settings = ['Log In', 'Sign Up'];
+
+const pags = [{to: '/index', name:'Home'}, {to: '/cities', name:'Cities'} ];
+const settingsLogo = [{to: '/cities', name:'Log In'}, {to: '/cities', name:'Log Out'}];//por ahora a cities
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,7 +49,6 @@ const Navbar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -90,10 +92,12 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pags.map((page,index) => (
+                <LinkRouter key={index} to={page.to} onClick={handleCloseNavMenu}>
+                  <MenuItem >
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </MenuItem>
+                </LinkRouter>
               ))}
             </Menu>
           </Box>
@@ -102,7 +106,6 @@ const Navbar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -118,14 +121,12 @@ const Navbar = () => {
 
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
+            {pags.map((page,index) => (
+              <LinkRouter  key={index} to={page.to} onClick={handleCloseNavMenu}>
+                <Button sx={{ my: 4, color: 'white', display: 'block' }}>
+                <p className='decoration-sub'>{page.name}</p>
               </Button>
+              </LinkRouter>
             ))}
           </Box>
 

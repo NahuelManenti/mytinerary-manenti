@@ -1,0 +1,11 @@
+.mantenimiento-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    height: 58.3vh;
+
+}
+.mantenimiento-center:hover{
+    color: aliceblue;
+}

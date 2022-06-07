@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 #app { height: 100% }
 html,
 body {
@@ -43,6 +45,7 @@ body {
 }
 .mySwiper{
   height: 80vh;
+  
 
 }
 
@@ -57,10 +60,15 @@ body {
   object-fit: cover;
   height: 30vh;
   width: 100%;
+  border-radius: 55%;
+
 }
+
 .SwiperSlide-row{
   display: flex;
   flex-direction: column;
+  background-color: #000;
+  border-radius: 55%;
 }
 
 
@@ -69,4 +77,9 @@ body {
   padding: 3vh;
   color: aliceblue;
   text-shadow: black 0.1em 0.1em 0.2em;
+}
+.color-marco-img{
+  color: #eee;
+  font-family: 'Patrick Hand', cursive;
+  font-size: medium;
 }

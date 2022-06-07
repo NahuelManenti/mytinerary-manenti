@@ -14,7 +14,7 @@ export default function Footer() {
     <div className='container.color'>
     
       <CssBaseline />
-      <div className='Footer' maxWidth="100">
+      <div className='Footer'>
         <Box className='Footer-flex' sx={{ bgcolor: '#12496e', height: '30vh' }}>
         <div className='icon-flex'>
           <h3 className='h3-footer'>Redes</h3>  
