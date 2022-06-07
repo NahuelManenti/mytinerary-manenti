@@ -6,6 +6,8 @@ import Main from './components/Main';
 import Navbar from './components/Navbar';
 import Data from "./components/json/Data"; //informacion de paises
 import './style/App.css';
+import { Routes } from 'react-router-dom';
+
 
 
 
@@ -14,9 +16,11 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Main/>
-      <Header/>
-      <Carousel countries= {Data}/>
+        
+            <Main/>
+            <Header/>
+            <Carousel countries= {Data}/>
+          
       <Footer/>
     </div>
   );

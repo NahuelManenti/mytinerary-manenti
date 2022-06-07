@@ -3,14 +3,16 @@
    }
 
 .Footer-flex{
-    color: aliceblue;
-    text-shadow: black 0.1em 0.1em 0.2em;
+    color: rgb(190, 186, 186);
+    text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
 }
-
+.Footer-flex:hover{
+    background-color: rgb(48, 69, 139);
+}
 
 .down-footer{
     text-align: center;
@@ -19,22 +21,30 @@
     text-shadow: black 0.1em 0.1em 0.2em;
 }
 
-.ico-flex{
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.navigate-flex{
-    
+.icon-flex{
+    font-size: x-large;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.container.color{
-    background-color: blue;
+.navigate-flex{
+    
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Policies-flex{
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.h3-footer{
+    color: rgb(253, 253, 253);
 }
