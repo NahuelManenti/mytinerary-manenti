@@ -11,6 +11,14 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Link as LinkRouter } from 'react-router-dom'
 
 export default function Footer() {
+  const toTopSmooth = ()=>{
+    window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: 0
+    
+  })
+}
   return (
     <>
     
@@ -30,8 +38,8 @@ export default function Footer() {
         </div>
         <div className='navigate-flex'>
           <h3 className='h3Footer'>Navigate</h3>
-          <LinkRouter className='textDecorationNone ' to={'/index'}><p className='navigateColor'>Home</p></LinkRouter>
-          <LinkRouter className='textDecorationNone ' to={'/cities'}><p className='navigateColor'>Cities</p></LinkRouter>
+          <LinkRouter className='textDecorationNone ' to={'/index'} onClick={toTopSmooth}><p className='navigateColor'>Home</p></LinkRouter>
+          <LinkRouter className='textDecorationNone ' to={'/cities'} onClick={toTopSmooth}><p className='navigateColor'>Cities</p></LinkRouter>
         </div>
         <div className='policiesFlex'>
           <h3 className='h3Footer'>Policies</h3>
