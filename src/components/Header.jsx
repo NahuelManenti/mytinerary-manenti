@@ -1,28 +1,10 @@
-// import React from "react";
-// function Header (){
-
-//     return(
-//         <div className="Container">
-//             <div className="Container-hijo1">
-//                 <h2>EXPLORE THE DREAM DESTINATION!</h2>
-//                 <p> Offering comprehensive travel solutions</p>
-//                 <p>to individuals and groups</p>
-//             </div>
-//             <button>click here</button>
-//         </div>
-
-
-//     )
-// }
-
-// export default Header
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import '../style/Header.css';
+import { Link as LinkRouter } from 'react-router-dom'
 
 const images = [
   {
@@ -48,7 +30,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
       opacity: 0,
     },
     '& .MuiTypography-root': {
-      border: '4px solid currentColor',
+      border: 'px solid currentColor',
     },
   },
 }));
@@ -98,11 +80,13 @@ const ImageMarked = styled('span')(({ theme }) => ({
 
 export default function ButtonBases() {
   return (
+    
     <Box className='conteinerHeader' sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-        <div className='text-await'>
-            <h3 className='text-await'>Great adventures await for you!</h3>
-            <h3 className='text-await'>What are you waiting for ?</h3>
+        <div className='textAwait'>
+            <h3 className='textAwait'>Great adventures await for you!</h3>
+            <h3 className='textAwait'>What are you waiting for ?</h3>
         </div>
+        
       {images.map((image) => (
         <ImageButton
           focusRipple
@@ -111,12 +95,13 @@ export default function ButtonBases() {
             width: image.width,
           }}
         >
+          <LinkRouter to={'/cities'}>
           <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
           <Image>
             <Typography
               component="span"
-              variant="subtitle1"
+              variant="subtitle"
               color="inherit"
               sx={{
                 position: 'relative',
@@ -129,8 +114,10 @@ export default function ButtonBases() {
               <ImageMarked className="MuiImageMarked-root" />
             </Typography>
           </Image>
+          </LinkRouter>
         </ImageButton>
       ))}
     </Box>
+    
   );
 }

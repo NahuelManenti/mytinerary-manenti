@@ -16,10 +16,10 @@ import Container from '@mui/material/Container';
 
 export default function Carousel(props) {
   return (
-    <div className="fondo-carousel">
+    <div className="bgCarousel">
     <Container >
-      <div className="Popular-Mytineraries">
-        <h2> Popular MYTINERARIES!</h2>
+      <div className="popularMytineraries">
+      <h2 className='mytineraryFont'><span className="popularFontColor">Popular </span><span className='myFontColor'>My</span>Tinerary</h2>
       </div>
       <Swiper
         slidesPerView={2}
@@ -36,14 +36,25 @@ export default function Carousel(props) {
         pagination={{
           clickable: true
         }}
+        breakpoints={{
+          "@0.00": {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          "@0.75": {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          
+        }}
         modules={[Grid, Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
         {props.countries.map((country,index)=>
-        <SwiperSlide key={index} className="SwiperSlide-row">
-          <div className="color-marco-img">{country.ciudad}</div>
-          <img className="fotos-carousel" src={country.foto}  alt="Fotos" /> 
-          <div className="color-marco-img">{country.pais}</div>
+        <SwiperSlide key={index} className="swiperSlideRow">
+          <div className="colorFramework">{country.City}</div>
+          <img className="photosCarousel" src={country.Photo}  alt="Scenery" /> 
+          <div className="colorFramework">{country.country}</div>
         </SwiperSlide>
         
         )}

@@ -1,8 +1,8 @@
-.Footer{
+.footerGlobal{
     margin-top: auto;
    }
 
-.Footer-flex{
+.footerFlex{
     color: rgb(190, 186, 186);
     text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
     display: flex;
@@ -10,18 +10,18 @@
     justify-content: space-evenly;
     align-items: center;
 }
-.Footer-flex:hover{
+.footerFlex:hover{
     background-color: rgb(48, 69, 139);
 }
 
-.down-footer{
+.downFooter{
     text-align: center;
     background: #000;
     color: aliceblue;
     text-shadow: black 0.1em 0.1em 0.2em;
 }
 
-.icon-flex{
+.iconFlex{
     font-size: x-large;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,25 @@
     align-items: center;
 }
 
-.Policies-flex{
+.policiesFlex{
     font-size: larger;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.h3-footer{
-    color: rgb(253, 253, 253);
+.h3Footer{
+    color: white;
+
+}
+
+.navigateColor{
+    color: rgb(190, 186, 186);
+    text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
+}
+
+
+
+.navigateColor:hover{
+    color: #000 !important;
 }

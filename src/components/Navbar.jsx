@@ -16,10 +16,11 @@ import { Link as LinkRouter } from 'react-router-dom';
 import '../style/Navbar.css';
 
 
+
 const settings = ['Log In', 'Sign Up'];
 
 const pags = [{to: '/index', name:'Home'}, {to: '/cities', name:'Cities'} ];
-const settingsLogo = [{to: '/cities', name:'Log In'}, {to: '/cities', name:'Log Out'}];//por ahora a cities
+// const settingsLogo = [{to: '/cities', name:'Log In'}, {to: '/cities', name:'Log Out'}];//por ahora a cities
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -52,14 +53,13 @@ const Navbar = () => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            MyTinerary
+            <p className='mytineraryFont'><span className='myFontColor'>My</span>Tinerary</p>
 
           </Typography>
 
@@ -93,9 +93,9 @@ const Navbar = () => {
               }}
             >
               {pags.map((page,index) => (
-                <LinkRouter key={index} to={page.to} onClick={handleCloseNavMenu}>
+                <LinkRouter className='textDecorationNone' key={index} to={page.to} onClick={handleCloseNavMenu}>
                   <MenuItem >
-                    <Typography textAlign="center">{page.name}</Typography>
+                    <Typography className='FontFamiliChangeNav' textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 </LinkRouter>
               ))}
@@ -105,26 +105,25 @@ const Navbar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 400,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            MyTinerary
+            <p className='mytineraryFont'><span className='myFontColor'>My</span>Tinerary</p>
 
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }  }}>
             {pags.map((page,index) => (
-              <LinkRouter  key={index} to={page.to} onClick={handleCloseNavMenu}>
-                <Button sx={{ my: 4, color: 'white', display: 'block' }}>
-                <p className='decoration-sub'>{page.name}</p>
+              <LinkRouter className='textDecorationNone' key={index} to={page.to} onClick={handleCloseNavMenu}>
+                <Button sx={{ my: 4, color: 'white', display: 'block'   }}>
+                <p className='FontFamiliChangeNavTop'>{page.name}</p>
               </Button>
               </LinkRouter>
             ))}

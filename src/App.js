@@ -3,8 +3,8 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import './style/App.css';
 import { Route, Routes } from 'react-router-dom';
-import PaginaCities from './pages/PaginaCities';
-import PaginaHome from './pages/PaginaHome';
+import PageCities from './pages/PageCities';
+import PageHome from './pages/PageHome';
 
 
 
@@ -14,9 +14,9 @@ function App() {
     <div className="App">
      <Navbar/> 
           <Routes>
-            <Route path='/' element={<PaginaHome />} />
-            <Route path='/cities' element={<PaginaCities />}  />
-            <Route path='/index' element={<PaginaHome />}  />
+            <Route path='/' element={<PageHome />} />
+            <Route path='/cities' element={<PageCities />}  />
+            <Route path='/index' element={<PageHome />}  />
           </Routes>
       <Footer/>
     </div>

@@ -1,4 +1,5 @@
-.img-fondo{
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+.imgBackground{
     background-image: url(../components/img/aiplanet.jpg);
     /* background-position: center ; */
     background-size: 100% 100%;
@@ -9,7 +10,7 @@
    
 }
 
-.img-fondo{
+.imgBackground{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,13 +19,9 @@
 
 }
 
-.h1-main{
-    color: #ff0000;
-    
-    
-}
-.h2-main{
-    color: white;
-    text-shadow: black 0.1em 0.1em 0.2em;
+.h2Main{
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
     text-align: center;
+    font-family: 'Righteous', cursive !important;
 }

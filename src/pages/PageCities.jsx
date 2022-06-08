@@ -1,11 +1,11 @@
 import React from 'react'
 import Box from '@mui/material/Box';
 import '../style/Mantenimiento.css';
-// import { Link as LinkRouter } from 'react-router-dom'
 
-export default function paginaCities() {
+
+export default function PageCities() {
   return (
-    <Box className='mantenimiento-center'
+    <Box className='maintenanceCenter'
     sx={{
       backgroundColor: 'primary.white',
       '&:hover': {
@@ -13,7 +13,7 @@ export default function paginaCities() {
         opacity: [0.9, 0.8, 0.7],
       },
     }}>
-    <p>En mantenimiento</p>
+    <p>In Maintenance</p>
     </Box>
   )
 }

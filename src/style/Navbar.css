@@ -1,3 +1,36 @@
-.decoration-sub{
-    text-decoration: none;
+.FontFamiliChangeNav{
+    font-family: 'Tangerine', cursive !important;
+    font-size: xx-large !important;
+    color: blue;
+
+}
+.FontFamiliChangeNav:hover{
+    color: black !important;
+}
+.FontFamiliChangeNavTop{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    padding-top: 1vh;
+    /* color: rgb(88, 210, 214); */
+}
+.FontFamiliChangeNavTop:hover{
+    color: black;
+}
+
+
+.textDecorationNone{
+    text-decoration: none !important; 
+}
+
+.bot-text-decoration{
+    color: white !important;
+}
+
+.mytineraryFont{
+    color: rgb(187, 206, 81) !important;
+    font-family: 'Black Ops One', cursive;
+}
+.myFontColor{
+    color: goldenrod;
 }
