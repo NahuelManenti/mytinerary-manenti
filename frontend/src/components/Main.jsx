@@ -1,16 +1,16 @@
 
 import '../style/Main.css';
 import React from 'react';
-import {
-  createTheme,
-  responsiveFontSizes,
-  ThemeProvider,
-} from '@mui/material/styles';
+// import {
+//   createTheme,
+//   responsiveFontSizes,
+  // ThemeProvider,
+// } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/material';
 
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
+// let theme = createTheme();
+// theme = responsiveFontSizes(theme);
 
 export default function ResponsiveFontSizes() {
   return (
