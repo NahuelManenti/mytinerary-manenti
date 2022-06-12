@@ -1,6 +1,13 @@
 import { Box, Container } from '@mui/system'
 import React from 'react'
 import Data from './json/Data'
+import "../style/CardAndFilter.css";
+
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 
 export default function CardAndFilter() {
@@ -12,15 +19,17 @@ export default function CardAndFilter() {
   React.useEffect(()=>{
     setCities(Data)
 
-    let city= Data.filter(city => city.City.toLowerCase().startsWith(search.thim().toLowerCase()))
+    let city= Data.filter(city => city.City.toLowerCase().startsWith(search.trim().toLowerCase()))
     setCities(city)
     },[search])
 
 
 
   return (
-    <>
-    <div>
+    <div className='imgBackgroundCard'>
+
+    <Container >
+    <div className="filterCardAndFilter">
       <input
       type='text'
       placeholder='Search...'
@@ -29,22 +38,30 @@ export default function CardAndFilter() {
       }}
       />
     </div>
-    <Container>
-      <div className="popularMytineraries">
-      <h2 className='mytineraryFont'><span className="popularFontColor">Popular </span><span className='myFontColor'>My</span>Tinerary</h2>
-      </div>
-      <Box>
-        {Cities.map((countrys ,index)=>
-        <Box key={index} className="swiperSlideRow">
-          <div className="colorFramework">{countrys.City}</div>
-          <img className="photosCarousel" src={countrys.Photo}  alt="Scenery" /> 
-          <div className="colorFramework">{countrys.country}</div>
-        </Box>
-        
-        )}
-      </Box>
+
+    {Cities.map((item ,index)=>
+    <Card sx={{ maxWidth: 1200 }} key={index} className="centerCardAndFilter">
+      <CardActionArea >
+        <CardMedia
+          component="img"
+          height="400"
+          image={item.Photo}
+          alt={item.City}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {item.City}
+          </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
+          {item.country}
+          </Typography> */}
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    )}
     </Container>
-    </>
+
+    </div>
   )
 }
 
