@@ -5,6 +5,7 @@ import './style/App.css';
 import { Route, Routes } from 'react-router-dom';
 import PageCities from './pages/PageCities';
 import PageHome from './pages/PageHome';
+import PageError404 from './pages/PageError404';
 
 
 
@@ -12,13 +13,14 @@ import PageHome from './pages/PageHome';
 function App() {
   return (
     <div className="App">
-     <Navbar/> 
+     {/* <Navbar/>  */}
           <Routes>
+            <Route path='/*' element={<PageError404 />} />
             <Route path='/' element={<PageHome />} />
             <Route path='/cities' element={<PageCities />}  />
             <Route path='/index' element={<PageHome />}  />
           </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

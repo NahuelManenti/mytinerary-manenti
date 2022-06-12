@@ -16,15 +16,7 @@ export default function Search() {
           >
             MUI
           </Typography>
-          {/* <Search> */}
-            {/* <SearchIconWrapper> */}
-              {/* <SearchIcon /> */}
-            {/* </SearchIconWrapper> */}
-            {/* <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            /> */}
-          {/* </Search> */}
+         
     </Box>
   )
 }

@@ -1,6 +1,7 @@
 import React from "react";//, { useRef, useState }
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Data from "./json/Data"
 
 // Import Swiper styles
 import "swiper/css";
@@ -14,7 +15,7 @@ import { Grid, Pagination, Navigation, Autoplay } from "swiper";
 import Container from '@mui/material/Container';
 
 
-export default function Carousel(props) {
+export default function Carousel() {
   return (
     <div className="bgCarousel">
     <Container >
@@ -39,11 +40,11 @@ export default function Carousel(props) {
         modules={[Grid, Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
-        {props.countries.map((country,index)=>
+        {Data.map((countrys ,index)=>
         <SwiperSlide key={index} className="swiperSlideRow">
-          <div className="colorFramework">{country.City}</div>
-          <img className="photosCarousel" src={country.Photo}  alt="Scenery" /> 
-          <div className="colorFramework">{country.country}</div>
+          <div className="colorFramework">{countrys.City}</div>
+          <img className="photosCarousel" src={countrys.Photo}  alt="Scenery" /> 
+          <div className="colorFramework">{countrys.country}</div>
         </SwiperSlide>
         
         )}
