@@ -1,4 +1,7 @@
-const { Console } = require('console')
+require('dotenv').config()
+require('./config/database')
+
+// const { Console } = require('console')
 const express=require('express')
 const app = express()
 

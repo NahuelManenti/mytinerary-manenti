@@ -8,6 +8,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import NotFound from './NotFound';
+// import NotFound from './NotFound';
+
 
 
 export default function CardAndFilter() {
@@ -26,29 +29,34 @@ export default function CardAndFilter() {
 
 
   return (
-    <div className='imgBackgroundCard'>
+    <Box className='imgBackgroundCard'>
 
-    <Container >
-    <div className="filterCardAndFilter">
-      <input
+    
+    <Box className="filterCardAndFilter">
+    <Typography gutterBottom variant="h5" component="div" className='upSearchCitys'>
+      Search City
+    </Typography>
+      <input className='searchCitys'
       type='text'
       placeholder='Search...'
       onKeyUp={(e)=>{
         setSearch(e.target.value)
       }}
       />
-    </div>
-
-    {Cities.map((item ,index)=>
-    <Card sx={{ maxWidth: 1200 }} key={index} className="centerCardAndFilter">
-      <CardActionArea >
+    </Box>
+    <Container >
+      {Cities.length > 0 ? (
+    Cities.map((item ,index)=>
+    <Card sx={{ maxWidth: 1200 }} key={index} className="centerCardAndFilter1">
+      <CardActionArea className="centerCardAndFilter" >
+      <CardContent className='colorBlackCardAndFilter'></CardContent>
         <CardMedia
           component="img"
-          height="400"
+          height="450"
           image={item.Photo}
           alt={item.City}
         />
-        <CardContent>
+        <CardContent className='colorBlackCardAndFilter'>
           <Typography gutterBottom variant="h5" component="div">
             {item.City}
           </Typography>
@@ -58,13 +66,13 @@ export default function CardAndFilter() {
         </CardContent>
       </CardActionArea>
     </Card>
-    )}
+    )) : (<NotFound/>)}
     </Container>
-
-    </div>
+  
+    </Box>
+    
   )
 }
-
 
 
 
