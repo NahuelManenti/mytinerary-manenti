@@ -1,27 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-.imgBackground{
-    background-image: url(../components/img/aiplanet.jpg);
-    /* background-position: center ; */
-    background-size: 100% 100%;
-    background-attachment: fixed;
-    height: 100vh;
-    width: 100%;
-    
-   
-}
-
-.imgBackground{
+.textAwait{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 9vh;
-
-}
-
-.h2Main{
     color: rgb(255, 255, 255);
-    text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
-    text-align: center;
+    justify-content: center;
     font-family: 'Righteous', cursive !important;
 }
+
+.conteinerHeader{
+    padding: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #12182c;
+    
+}
+
+
+
+
+@media screen and (max-width: 1050px){
+    .imageSrcClickHere{
+            background-position: center !important;
+            background-size: contain !important;
+           }
+    }
+    @media screen and (max-width: 600px){
+        .imageSrcClickHere{
+                background-position: center !important;
+                background-size: cover !important;
+               }
+        }

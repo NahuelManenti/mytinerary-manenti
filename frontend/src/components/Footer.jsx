@@ -24,7 +24,7 @@ export default function Footer() {
     
       <CssBaseline />
       <div className='footerGlobal'>
-        <Box className='footerFlex' sx={{ bgcolor: '#12496e', height: '30vh' }}>
+        <Box className='footerFlex' sx={{ bgcolor: '#2E3B55', height: '30vh' }}>
         <div className='iconFlex'>
           <h3 className='h3Footer'>Socials</h3>  
             <div>

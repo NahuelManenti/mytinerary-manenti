@@ -10,9 +10,9 @@
     justify-content: space-evenly;
     align-items: center;
 }
-.footerFlex:hover{
+/* .footerFlex:hover{
     background-color: rgb(48, 69, 139);
-}
+} */
 
 .downFooter{
     text-align: center;

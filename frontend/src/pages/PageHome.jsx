@@ -11,9 +11,9 @@ export default function PageHome() {
   return (
     <div>
         <Navbar/>
-        <Main/>
         <Header/>
-         <Carousel /> {/* //countries= {Data} */}
+        <Main/>
+        <Carousel /> {/* //countries= {Data} */}
         <Footer/>
     </div>
   )
