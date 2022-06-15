@@ -2,38 +2,24 @@
 import React from 'react'
 import "../style/CardAndFilter.css";
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+
+
 
 
 
 export default function NotFound() {
 
   return (
-    <>
-    <Card sx={{ maxWidth: 1200 }} className="centerCardAndFilter2">
-      <CardActionArea className="centerCardAndFilter" >
-      <CardContent className='colorBlackCardAndFilter'></CardContent>
-        <CardMedia
-          component="img"
-          height="450"
-          image=""
-          alt=""
-        />
-        <CardContent className='colorBlackCardAndFilter'>
-          <Typography gutterBottom variant="h5" component="div">
-            Plz Research Citys
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-          {item.country}
-          </Typography> */}
-        </CardContent>
-      </CardActionArea>
-    </Card>
-  </>
+    <div className="cards__item1">
+    <div className="card">
+      <div className="card__image card__image--river" style={{backgroundImage: `url(https://klizos.com/wp-content/uploads/funny-404-error-page-GIF-klizo-solutions.gif)` }}></div>
+      <div className="card__content">
+        <div className="card__title">Plz Research</div>
+        <p className="card__text1"> The search engine does not work, please search again with an existing city </p>
+      </div>
+      </div>
+      
+    
+  </div>
   )
 }
-

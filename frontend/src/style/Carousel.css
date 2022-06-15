@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-#app { height: 100% }
+/* #app { height: 100% }
 html,
 body {
   position: relative;
@@ -14,7 +14,7 @@ body {
   color: #000;
   margin: 0;
   padding: 0;
-}
+} */
 
 .swiper {
   width: 100%;

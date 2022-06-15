@@ -1,18 +1,33 @@
 require('dotenv').config()
 require('./config/database')
 
-// const { Console } = require('console')
 const express=require('express')
-const app = express()
-
+const Router = require ('./routes/routes')
 const PORT = 4000
 
-app.set('port', PORT)
+const app = express()
 
-app.get('/' , (req, res) => {
-    res.send('SERVIDOR CREADO!')
-})
+//middlewares
+app.use(express.json())
+app.use('/api', Router)
 
-app.listen(PORT, () => {
-    console.log('SERVIDOR CORRIENDO EN PUERTO: ' +app.get('port'))
-})
+
+app.listen(PORT, () => console.log('SERVIDOR CORRIENDO EN PUERTO: ' +PORT))
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.set('port', PORT)
+
+// app.get('/' , (req, res) => {
+//     res.send('SERVIDOR CREADO!')
+// })

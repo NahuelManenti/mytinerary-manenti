@@ -32,13 +32,22 @@
 .centerCardAndFilter1{
     margin: 3vh;
 }
-.centerCardAndFilter2{
+/* .centerCardAndFilter2{
     margin: 3vh;
     background-image: url(https://klizos.com/wp-content/uploads/funny-404-error-page-GIF-klizo-solutions.gif);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+} */
+.cards__item1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.card__text1{
+    min-width: 20vh;
+}
+
 
 .searchCitys{
     text-align: center;
@@ -48,4 +57,138 @@
 .upSearchCitys{
     padding: 2vh;
     color: rgb(233, 255, 34);
+}
+
+
+
+/* ------------------------------------------------------ */
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  background-color: #f0f0f0;
+}
+body {
+  color: #999999;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 1rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
+}
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+} */
+.btn {
+    text-align: center;
+  background-color: white !important;
+  border: 1px solid #cccccc !important;
+  color: #940808 !important;
+  padding: 0.5rem !important;
+  text-transform: lowercase !important;
+}
+.btn--block {
+  display: block !important;
+  width: 100% !important;
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cards__item {
+  display: flex;
+  padding: 1rem;
+}
+@media (min-width: 40rem) {
+  .cards__item {
+    width: 50%;
+  }
+}
+@media (min-width: 56rem) {
+  .cards__item {
+    width: 33.3333%;
+  }
+}
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.card:hover .card__image {
+  filter: contrast(100%);
+}
+.card__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1rem;
+}
+.card__image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  filter: contrast(70%);
+  overflow: hidden;
+  position: relative;
+  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+}
+.card__image::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+@media (min-width: 40rem) {
+  .card__image::before {
+    padding-top: 66.6%;
+  }
+}
+
+
+.card__title  {
+    text-align: center;
+  color: #000000 !important;
+  font-size: 1.25rem !important;
+  font-weight: 300 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+}
+.card__text {
+    color: #696969 !important;
+    text-align: center;
+    height: 2vh;
+    width: 55vh;
+  flex: 1 1 auto;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+
+.buttomBackCities{
+  padding-top: 7vh;
+}
+
+.containerPageCitiesDetails{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
