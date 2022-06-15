@@ -6,7 +6,7 @@ export default function PageError404() {
   return (
     <>
         <div>
-            Error404 plz Research
+            Error404 Please Research
         </div>
     </>
   )

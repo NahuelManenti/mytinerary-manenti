@@ -14,31 +14,33 @@ import { Link as LinkRouter } from 'react-router-dom';
 
 
 export default function CardAndFilter() {
+  const toTopSmooth = ()=>{
+    window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: 0
+    
+  })}
+
+
 
   const [Data, setData] = useState([])
+  const[search, setSearch] =useState('')
 
   useEffect( () => {
     axios.get(`http://localhost:4000/api/cities`)
     .then(res =>{
 
       setData(res.data.response.cities)
-      setCities(res.data.response.cities)
       
     })
   },[])
+  let city= Data.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
+
+  // const[Cities, setCities] = React.useState([])
   
 
-  const[Cities, setCities] = React.useState([])
-  const[search, setSearch] = React.useState('')
-
-
-  useEffect(()=>{
-    setCities(Data)
-
-    let city= Data.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
-    setCities(city)
-    },[search])
-
+    
 
 
   return (
@@ -57,8 +59,8 @@ export default function CardAndFilter() {
       />
     </Box>
     <ul className="cards">
-      {Cities.length > 0 ? (
-    Cities.map(item=>
+      {city.length > 0 ? (
+    city.map(item=>
       
     <li className="cards__item" key={item._id}>
     <div className="card">
@@ -66,7 +68,7 @@ export default function CardAndFilter() {
       <div className="card__content">
         <div className="card__title">{item.name}</div>
         <div className="card__text">{item.country} </div>
-        <LinkRouter to = {`/cities/${item._id}`} className="btn btn--block card__btn"> See more </LinkRouter>
+        <LinkRouter to = {`/cities/${item._id}`} onClick={toTopSmooth} className="btn btn--block card__btn"> See more </LinkRouter>
       </div>
     </div>
   </li>

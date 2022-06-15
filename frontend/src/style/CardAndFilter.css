@@ -217,3 +217,10 @@ img {
   margin-right: 2vh;
   margin-bottom: 2vh;
 }
+
+.imgPageCitiesDetails{
+
+  object-fit: cover !important;
+  height: 50vh;
+
+}

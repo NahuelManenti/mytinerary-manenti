@@ -31,24 +31,20 @@ export default function PageCitiesDetails() {
 const [Data, setData] = useState([])
 
 useEffect( () => {
-  axios.get(`http://localhost:4000/api/cities`)
+  axios?.get(`http://localhost:4000/api/cities`)
   .then(res =>{
 
     setData(res.data.response.cities)
     
   })
 },[])
-console.log(Data)
+
 
     const {idCardsCountris} = useParams()
 
     let CitySearch = Data.find(info => {
        return info._id === idCardsCountris
     })
-
-
-// console.log(idCardsCountris)
-
 
 
   return (
@@ -58,23 +54,23 @@ console.log(Data)
     <Card sx={{ maxWidth:1100 }}  className="centerCardAndFilter1">
       <CardActionArea className="centerCardAndFilter" >
       <CardContent className='colorBlackCardAndFilter'></CardContent>
-        <CardMedia
+        <CardMedia className='imgPageCitiesDetails'
           component="img"
-          height="263"
-          image={CitySearch.image}
-          alt={CitySearch.name}
+          // height="263"
+          image={CitySearch?.image}
+          alt={CitySearch?.name}
         />
         <CardContent className='colorBlackCardAndFilter'>
           <Typography gutterBottom variant="h4" component="div">
-            {CitySearch.name}
+            {CitySearch?.name}
           </Typography>
            <Typography gutterBottom variant="h7" component="div">
-          {CitySearch.description}
+          {CitySearch?.description}
           </Typography> 
         </CardContent>
       </CardActionArea>
     </Card>
-    <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch._id} >
+    <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch?._id} >
     <AwesomeButton  className="buttomBackCities" size="large" type="primary">Back to Cities</AwesomeButton>
     </LinkRouter>
     </div>

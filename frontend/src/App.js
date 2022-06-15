@@ -7,8 +7,9 @@ import PageCities from './pages/PageCities';
 import PageHome from './pages/PageHome';
 import PageError404 from './pages/PageError404';
 import PageCitiesDetails from './pages/PageCitiesDetails';
+import ScrollToTop from 'react-scroll-to-top';
 
-
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
             <Route path='/index' element={<PageHome />}  />
             <Route path='/cities/:idCardsCountris' element={<PageCitiesDetails />}  />
           </Routes>
+          <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>
+
       {/* <Footer/> */}
     </div>
   );
