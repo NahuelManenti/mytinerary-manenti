@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import "../style/CardAndFilter.css";
 
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 
 import NotFound from './NotFound';
 import { Link as LinkRouter } from 'react-router-dom';
@@ -44,15 +44,16 @@ export default function CardAndFilter() {
 
 
   return (
-  <div className='imgBackgroundCard'>
+<div className='imgBackgroundCard'>
+  <Box className='centerBackgroundCardandFilter'>
     {/* <Container maxWidth="xl"> */}
     <Box className="filterCardAndFilter">
-    <Typography gutterBottom variant="h5" component="div" className='upSearchCitys'>
+    {/* <Typography gutterBottom variant="h5" component="div" className='upSearchCitys'>
       Search City
-    </Typography>
+    </Typography> */}
       <input className='searchCitys'
       type='text'
-      placeholder='Search...'
+      placeholder='Filter by City '
       onKeyUp={(e)=>{
         setSearch(e.target.value)
       }}
@@ -76,7 +77,8 @@ export default function CardAndFilter() {
     )) : (<NotFound/>)}
     </ul>
     {/* </Container> */}
-</div> 
+</Box>
+</div>
   )
 }
 

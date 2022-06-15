@@ -49,11 +49,7 @@
 }
 
 
-.searchCitys{
-    text-align: center;
-    margin: 1vh;
-    padding: 1vh;
-}
+
 .upSearchCitys{
     padding: 2vh;
     color: rgb(233, 255, 34);
@@ -210,13 +206,17 @@ img {
 }
 
 .containerPageCitiesDetails{
+  background-image: url(https://images.pexels.com/photos/1802268/pexels-photo-1802268.jpeg);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 2vh;
-  margin-bottom: 2vh;
+  padding-right: 3vh;
+  padding-bottom: 3vh;
+  
+  
 }
+
 
 .imgPageCitiesDetails{
 
@@ -224,3 +224,33 @@ img {
   height: 50vh;
 
 }
+
+
+
+.searchCitys {
+  margin-bottom: 3vh;
+  max-width: 190px;
+  height: 30px;
+  border: 2px solid transparent;
+  outline: none;
+  border-bottom: 2px solid #3f3f3f;
+  caret-color: #3f3f3f;
+  background-color: #212121;
+  padding: 2vh;
+  transition: .5s linear;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+  font-size: large !important;
+  letter-spacing: 1px;
+}
+
+.searchCitys:focus {
+  border: 2px solid #fa4753;
+  caret-color: #fa4753;
+  color: #fa4753;
+  box-shadow: 4px 4px 10px #070707;
+}
+
+.searchCitys:focus::placeholder {
+  color: #fa4753;
+}
+ 

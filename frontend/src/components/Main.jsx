@@ -8,15 +8,15 @@ import { Link as LinkRouter } from 'react-router-dom'
 
 const images = [
   {
-    url: 'https://cdn.pixabay.com/photo/2016/04/06/17/54/click-here-1312391_960_720.png',
+    url: 'https://c.tenor.com/dBq_KGDCCa8AAAAC/click-clicking.gif',
     title: '',
-    width: '60%',
+    width: '40%',
   },
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
-  height: 230,
+  height: 500,
   [theme.breakpoints.down('sm')]: {
     width: '100% !important', // Overrides inline-style
     height: 100,

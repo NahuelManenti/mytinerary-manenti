@@ -23,7 +23,7 @@
 @media screen and (max-width: 1050px){
     .imageSrcClickHere{
             background-position: center !important;
-            background-size: contain !important;
+            background-size: cover !important;
            }
     }
     @media screen and (max-width: 600px){
@@ -32,3 +32,6 @@
                 background-size: cover !important;
                }
         }
+
+
+
