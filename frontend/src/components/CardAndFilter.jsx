@@ -1,6 +1,8 @@
 import { Box} from '@mui/system'
 import React from 'react'
-import Data from './json/Data'
+import { useEffect, useState } from 'react';
+// import Data from './json/Data'
+import axios from "axios";
 import "../style/CardAndFilter.css";
 
 import Typography from '@mui/material/Typography';
@@ -10,14 +12,27 @@ import { Link as LinkRouter } from 'react-router-dom';
 
 
 
+
 export default function CardAndFilter() {
+
+  const [Data, setData] = useState([])
+
+  useEffect( () => {
+    axios.get(`http://localhost:4000/api/cities`)
+    .then(res =>{
+
+      setData(res.data.response.cities)
+      setCities(res.data.response.cities)
+      
+    })
+  },[])
   
 
   const[Cities, setCities] = React.useState([])
   const[search, setSearch] = React.useState('')
 
 
-  React.useEffect(()=>{
+  useEffect(()=>{
     setCities(Data)
 
     let city= Data.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
@@ -28,6 +43,7 @@ export default function CardAndFilter() {
 
   return (
   <div className='imgBackgroundCard'>
+    {/* <Container maxWidth="xl"> */}
     <Box className="filterCardAndFilter">
     <Typography gutterBottom variant="h5" component="div" className='upSearchCitys'>
       Search City
@@ -57,6 +73,7 @@ export default function CardAndFilter() {
   
     )) : (<NotFound/>)}
     </ul>
+    {/* </Container> */}
 </div> 
   )
 }

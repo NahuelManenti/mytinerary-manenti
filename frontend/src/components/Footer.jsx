@@ -8,7 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { Link as LinkRouter } from 'react-router-dom'
+import { Link as LinkRouter } from 'react-router-dom';
 
 export default function Footer() {
   const toTopSmooth = ()=>{
@@ -20,7 +20,7 @@ export default function Footer() {
   })
 }
   return (
-    <>
+    <Box>
     
       <CssBaseline />
       <div className='footerGlobal'>
@@ -51,6 +51,6 @@ export default function Footer() {
         </Box> 
       </div>
       <h4 className='downFooter'>Copyright © - MYTINERARY All Rights Reserved.</h4>
-      </>
+      </Box>
   );
 }

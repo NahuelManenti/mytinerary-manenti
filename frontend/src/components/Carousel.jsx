@@ -9,10 +9,12 @@ import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../style/Carousel.css";
-
 // import required modules
 import { Grid, Pagination, Navigation, Autoplay } from "swiper";
 import Container from '@mui/material/Container';
+
+
+
 
 
 export default function Carousel() {

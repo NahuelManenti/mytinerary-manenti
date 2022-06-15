@@ -79,6 +79,15 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export default function Main() {
+  const toTopSmooth = ()=>{
+    window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: 0
+    
+  })
+}
+  
   return (
     
     <Box className='conteinerHeader' sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
@@ -95,7 +104,7 @@ export default function Main() {
             width: image.width,
           }}
         >
-          <LinkRouter to={'/cities'}>
+          <LinkRouter to={'/cities'} onClick={toTopSmooth}>
           <ImageSrc className='imageSrcClickHere' style={{ backgroundImage: `url(${image.url})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
           <Image>
