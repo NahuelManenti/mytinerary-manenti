@@ -42,8 +42,8 @@ export default function Carousel() {
       >
         {Data.map((countrys ,index)=>
         <SwiperSlide key={index} className="swiperSlideRow">
-          <div className="colorFramework">{countrys.City}</div>
-          <img className="photosCarousel" src={countrys.Photo}  alt="Scenery" /> 
+          <div className="colorFramework">{countrys.name}</div>
+          <img className="photosCarousel" src={countrys.image}  alt="Scenery" /> 
           <div className="colorFramework">{countrys.country}</div>
         </SwiperSlide>
         

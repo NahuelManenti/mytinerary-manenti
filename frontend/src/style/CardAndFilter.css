@@ -163,7 +163,7 @@ img {
 
 
 .card__title  {
-    text-align: center;
+    text-align: start;
   color: #000000 !important;
   font-size: 1.25rem !important;
   font-weight: 300 !important;
@@ -172,7 +172,8 @@ img {
 }
 .card__text {
     color: #696969 !important;
-    text-align: center;
+    display: flex;
+    /* justify-content: start; */
     height: 2vh;
     width: 55vh;
   flex: 1 1 auto;

@@ -20,7 +20,7 @@ export default function CardAndFilter() {
   React.useEffect(()=>{
     setCities(Data)
 
-    let city= Data.filter(city => city.City.toLowerCase().startsWith(search.trim().toLowerCase()))
+    let city= Data.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
     setCities(city)
     },[search])
 
@@ -44,13 +44,13 @@ export default function CardAndFilter() {
       {Cities.length > 0 ? (
     Cities.map(item=>
       
-    <li className="cards__item">
+    <li className="cards__item" key={item._id}>
     <div className="card">
-      <div className="card__image card__image--river" style={{backgroundImage: `url(${item.Photo})` }}></div>
+      <div className="card__image card__image--river" style={{backgroundImage: `url(${item.image})` }}></div>
       <div className="card__content">
-        <div className="card__title">{item.City}</div>
-        <p className="card__text">{item.country} </p>
-        <LinkRouter to = {`/cities/${item._id}`} key={item._id} className="btn btn--block card__btn"> See more </LinkRouter>
+        <div className="card__title">{item.name}</div>
+        <div className="card__text">{item.country} </div>
+        <LinkRouter to = {`/cities/${item._id}`} className="btn btn--block card__btn"> See more </LinkRouter>
       </div>
     </div>
   </li>
@@ -72,12 +72,12 @@ export default function CardAndFilter() {
   //       <CardMedia
   //         component="img"
   //         height="450"
-  //         image={item.Photo}
-  //         alt={item.City}
+  //         image={item.image}
+  //         alt={itemname}
   //       />
   //       <CardContent className='colorBlackCardAndFilter'>
   //         <Typography gutterBottom variant="h5" component="div">
-  //           {item.City}
+  //           {itemname}
   //         </Typography>
   //       </CardContent>
   //     </CardActionArea>

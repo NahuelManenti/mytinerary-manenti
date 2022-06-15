@@ -43,15 +43,15 @@ export default function PageCitiesDetails() {
         <CardMedia
           component="img"
           height="450"
-          image={CitySearch.Photo}
-          alt={CitySearch.City}
+          image={CitySearch.image}
+          alt={CitySearch.name}
         />
         <CardContent className='colorBlackCardAndFilter'>
           <Typography gutterBottom variant="h4" component="div">
-            {CitySearch.City}
+            {CitySearch.name}
           </Typography>
            <Typography gutterBottom variant="h7" component="div">
-          {CitySearch.Details}
+          {CitySearch.description}
           </Typography> 
         </CardContent>
       </CardActionArea>
