@@ -2,7 +2,8 @@ import { Box} from '@mui/system'
 import React from 'react'
 import { useEffect, useState } from 'react';
 // import Data from './json/Data'
-import axios from "axios";
+import { connect } from 'react-redux';
+import cityActions from '../redux/actions/cityActions';
 import "../style/CardAndFilter.css";
 
 // import Typography from '@mui/material/Typography';
@@ -13,7 +14,7 @@ import { Link as LinkRouter } from 'react-router-dom';
 
 
 
-export default function CardAndFilter() {
+ function CardAndFilter(props) {
   const toTopSmooth = ()=>{
     window.scroll({
     behavior: 'smooth',
@@ -24,18 +25,12 @@ export default function CardAndFilter() {
 
 
 
-  const [Data, setData] = useState([])
   const[search, setSearch] =useState('')
 
   useEffect( () => {
-    axios.get(`http://localhost:4000/api/cities`)
-    .then(res =>{
-
-      setData(res.data.response.cities)
-      
-    })
+    props.getCities()
   },[])
-  let city= Data.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
+  let city= props.cities.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
 
   // const[Cities, setCities] = React.useState([])
   
@@ -81,8 +76,18 @@ export default function CardAndFilter() {
 </div>
   )
 }
+const MapDispatchToProps={
+  getCities:cityActions.getCities,
+}
 
+const mapStateToProps= (state)=> {
+  return{
+    cities: state.cityReducer.cities,
+    auxiliar: state.cityReducer.auxiliar
+  }
 
+}
+export default connect(mapStateToProps, MapDispatchToProps) (CardAndFilter)
 
 
 
