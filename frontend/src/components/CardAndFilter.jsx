@@ -2,19 +2,19 @@ import { Box} from '@mui/system'
 import React from 'react'
 import { useEffect, useState } from 'react';
 // import Data from './json/Data'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cityActions from '../redux/actions/cityActions';
 import "../style/CardAndFilter.css";
-
 // import Typography from '@mui/material/Typography';
-
 import NotFound from './NotFound';
 import { Link as LinkRouter } from 'react-router-dom';
 
 
 
 
- function CardAndFilter(props) {
+ function CardAndFilter() {
+
+
   const toTopSmooth = ()=>{
     window.scroll({
     behavior: 'smooth',
@@ -22,30 +22,29 @@ import { Link as LinkRouter } from 'react-router-dom';
     top: 0
     
   })}
-
-
-
   const[search, setSearch] =useState('')
-
+  const dispatch = useDispatch();
   useEffect( () => {
-    props.getCities()
-  },[])
-  let city= props.cities.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
+    dispatch(cityActions.filterCities(search))
+  },[search])
 
-  // const[Cities, setCities] = React.useState([])
+  const city = useSelector(store => store.cityReducer.filterCity)
   
 
-    
+  // useEffect( () => {
+  //   props.getCities()
+  // },[])
 
+
+
+  // let city= cityRedux.filter(city => city.name.toLowerCase().startsWith(search.trim().toLowerCase()))
+
+  
 
   return (
 <div className='imgBackgroundCard'>
   <Box className='centerBackgroundCardandFilter'>
-    {/* <Container maxWidth="xl"> */}
     <Box className="filterCardAndFilter">
-    {/* <Typography gutterBottom variant="h5" component="div" className='upSearchCitys'>
-      Search City
-    </Typography> */}
       <input className='searchCitys'
       type='text'
       placeholder='Filter by City '
@@ -71,40 +70,11 @@ import { Link as LinkRouter } from 'react-router-dom';
   
     )) : (<NotFound/>)}
     </ul>
-    {/* </Container> */}
 </Box>
 </div>
   )
 }
-const MapDispatchToProps={
-  getCities:cityActions.getCities,
-}
 
-const mapStateToProps= (state)=> {
-  return{
-    cities: state.cityReducer.cities,
-    auxiliar: state.cityReducer.auxiliar
-  }
-
-}
-export default connect(mapStateToProps, MapDispatchToProps) (CardAndFilter)
+export default CardAndFilter
 
 
-
-
-  // <Card sx={{ maxWidth: 1200 }} className="centerCardAndFilter1">
-  //     <CardActionArea className="centerCardAndFilter" >
-  //     <CardContent className='colorBlackCardAndFilter'></CardContent>
-  //       <CardMedia
-  //         component="img"
-  //         height="450"
-  //         image={item.image}
-  //         alt={itemname}
-  //       />
-  //       <CardContent className='colorBlackCardAndFilter'>
-  //         <Typography gutterBottom variant="h5" component="div">
-  //           {itemname}
-  //         </Typography>
-  //       </CardContent>
-  //     </CardActionArea>
-  //   </Card>

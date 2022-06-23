@@ -19,8 +19,8 @@ const tineraryController = {
     },
 
     uploadTinerary: async (req,res) => {
-        const {city,userPhoto,userName,itinerary,price,time,tags,description,likes} = req.body
-        new Tineraries ({city,userPhoto,userName,itinerary,price,time,tags,description,likes}).save()
+        const {city,managerPhoto,managerName,itinerary,price,time,tags,description,likes} = req.body.data
+        new Tineraries ({city,managerPhoto,managerName,itinerary,price,time,tags,description,likes}).save()
         .then(respons => res.json({respons}))
     },
 
@@ -62,34 +62,34 @@ const tineraryController = {
             error: error 
         })
     },
-
-    likeDislike: async (req,res) => {
-        let tineraryId = req.params.id 
-        let user = req.user.id
-        try { 
-            let tinerary = await Tineraries.findOne({_id:tineraryId}) 
-            if (tinerary.likes.includes(user)) {
-                Tineraries.findOneAndUpdate({_id:tineraryId}, {$pull:{likes:user}}, {new:true})
-                    .then(response => res.json({
-                        response: response.likes, 
-                        success: true
-                    }))
-                    .catch(error => console.log(error))
-            } else {
-                Tineraries.findOneAndUpdate({_id:tineraryId}, {$push:{likes:user}}, {new:true})
-                    .then(response => res.json({
-                        response: response.likes, 
-                        success: true
-                    }))
-                    .catch(error => console.log(error))
-            }
-        } catch (error) {
-            res.json({
-                response: error,
-                success: false
+    
+    multiplesTineraris: async (req, res) => {
+        let tineraries = []
+        const data = req.body.data //almaceno en la constante data la informacion que le pedi al body
+        let error = null
+        try {
+            data.map(async (item) => {
+                await new Tineraries({
+                    city: item.city,
+                    managerPhoto: item.managerPhoto,
+                    managerName: item.managerName,
+                    itinerary: item.itinerary,
+                    price: item.price,
+                    time: item.time,
+                    tags: item.tags,
+                    description: item.description,
+                    likes: item.likes
+                }).save()
             })
-        } 
-    }
+        } catch (err) { error = err }
+        tineraries = await Tineraries.find()
+        res.json({
+            response: error ? "ERROR" : tineraries,
+            success: error ? false : true,
+            error: error
+        })
+    },
+
 }
 
 module.exports = tineraryController

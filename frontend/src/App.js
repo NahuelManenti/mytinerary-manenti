@@ -8,11 +8,23 @@ import PageHome from './pages/PageHome';
 import PageError404 from './pages/PageError404';
 import PageCitiesDetails from './pages/PageCitiesDetails';
 import ScrollToTop from 'react-scroll-to-top';
-
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-
+import { useDispatch } from 'react-redux';
+import {useEffect} from "react"
+import cityActions from './redux/actions/cityActions';
 
 function App() {
+
+  const dispatch = useDispatch();
+  useEffect( () => {
+    dispatch(cityActions.getCities())
+  },[])
+
+ 
+
+
+
+
   return (
     <div className="App">
      {/* <Navbar/>  */}

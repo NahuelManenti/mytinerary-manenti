@@ -211,8 +211,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-right: 3vh;
-  padding-bottom: 3vh;
+  /* padding-right: 3vh; */
+  /* padding-bottom: 3vh; */
   
   
 }

@@ -2,6 +2,11 @@ const Router = require('express'). Router();
 
 const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} = citiesControllers
+const tineraryController = require('../controllers/tineraryControllers')
+const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
+
+
+
 
 Router.route('/cities')
 .get(getCities)
@@ -14,5 +19,21 @@ Router.route('/cities/:id')
 
 Router.route("/multiplesCities")
 .post(multiplesCities)
+Router.route("/multiplesTineraris")
+.post(multiplesTineraris)
+
+
+Router.route('/tineraries')
+.get(getTineraries)
+.post(uploadTinerary)
+
+Router.route('/tineraries/:id')
+.delete(deleteTin)
+//.put(modifyTin)
+.get(oneTinerary)
+
+Router.route('/tineraries/cities/:id')
+.get(findTinFromCity)
+
 
 module.exports= Router
