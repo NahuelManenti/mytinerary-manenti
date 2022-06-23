@@ -3,8 +3,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography';
 
-//importo los estilos
-import '../styles/styles.css'
+
 
 export default function TinerariesNotSearch () {
     return (
@@ -16,9 +15,11 @@ export default function TinerariesNotSearch () {
                 justifyContent: 'center',
                 width: '100%',
                 height: '100px',
-                backgroundColor: 'rgb(207, 238, 228)',
-                marginTop: '10px'}}>
-                <Typography variant="h6">not <label className='festiveFont bigAnounce'> Tineraries </label> Today!</Typography>
+                color: 'black',
+                backgroundColor: 'rgb(237, 238, 228)',
+                marginBottom: '25px',
+                marginTop: '25px'}}>
+                <Typography variant="h5">Not  Itineraries  Today!</Typography>
             </Box>
         </>
     )

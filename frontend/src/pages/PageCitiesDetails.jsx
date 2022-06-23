@@ -8,7 +8,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import {Box, CardActionArea, useControlled} from '@mui/material';
+import {Box, CardActionArea} from '@mui/material';
 // import Data from '../components/json/Data';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
@@ -23,7 +23,10 @@ import CardExpand from '../components/CardExpand';
 import { useDispatch, useSelector } from 'react-redux';
 import cityActions from '../redux/actions/cityActions';
 import tineraryActions from '../redux/actions/tineraryActions';
-
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import TinerariesNotSearch from '../components/TinerariesNotSearch'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -41,13 +44,10 @@ const ExpandMore = styled((props) => {
  function PageCitiesDetails() {
 
   const dispatch = useDispatch();
-  
-
-
-    // const dispatch = useDispatch();
     useEffect( () => {
       dispatch(cityActions.oneCity(idCardsCountris))
       dispatch(tineraryActions.findFromCity(idCardsCountris))
+      // eslint-disable-next-line
     },[])
     const CitySearch = useSelector(store => store.cityReducer.oneCity)
     const tinerarySearch = useSelector(store => store.tineraryReducer.filterTin)
@@ -56,7 +56,6 @@ const ExpandMore = styled((props) => {
     // let CitySeharc = allcities.find(info => {
     //    return info._id === idCardsCountris
     // })
-    console.log(tinerarySearch)
     const toTopSmooth = ()=>{
         window.scroll({
         behavior: 'smooth',
@@ -64,17 +63,21 @@ const ExpandMore = styled((props) => {
         top: 0
         
       })}
-      // const [activity,setActivity] = useState([])
       const [expanded, setExpanded] = useState(false);
       const handleExpandClick = () => {
           setExpanded(!expanded);
       }
-
+// console.log(tinerarySearch)
+// console.log(CitySearch)
   return (
  <>
     <Navbar></Navbar>
     <div className="containerPageCitiesDetails" >
-    <Card sx={{ maxWidth:1100 }}  className="centerCardAndFilter1">
+    <Card sx={{ 
+      maxWidth:1920,
+      height: '100%',
+      width: '100%'
+     }}  className="centerCardAndFilter1">
       <CardActionArea className="centerCardAndFilter" >
       <CardContent className='colorBlackCardAndFilter'></CardContent>
         <CardMedia className='imgPageCitiesDetails'
@@ -93,11 +96,11 @@ const ExpandMore = styled((props) => {
         </CardContent>
       </CardActionArea>
     </Card>
-    <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch?._id} >
-    <AwesomeButton  className="buttomBackCities" size="large" type="primary">Back to Cities</AwesomeButton>
-    </LinkRouter>
-    </div>
-     <Card sx={{
+
+    {tinerarySearch.length > 0 ? (
+    tinerarySearch?.map((tinerary, index)=>
+     <Card key={index}
+            sx={{
             display: 'flex',
             flexDirection: 'column',
             flexGrow: '1',
@@ -107,10 +110,19 @@ const ExpandMore = styled((props) => {
             justifyContent: 'center',
             backgroundColor: 'rgb(237, 238, 228)',
             padding: '10px',
-            width: '100%'}}>
-            <Typography variant="h2" className='festiveFont'>{tinerarySearch?.itinerary}</Typography>
-            <Typography variant="subtitle1" className='fredokaFont'>{tinerarySearch?.description}</Typography>
-            <Typography variant="subtitle2" className='fredokaFont'>price: {tinerarySearch?.price} - {tinerarySearch?.time}hs</Typography>
+            margin: '25px',
+            width: '80%'}}>
+            <Typography variant="h3" >{tinerary.itinerary}</Typography>
+            <Stack direction="row" spacing={2}> 
+              <Avatar
+                 alt="Remy Sharp"
+                 src={`${tinerary.managerPhoto}`}
+                 sx={{ width: 96, height: 96 }}
+                 />
+            </Stack>
+            <Typography variant="h5" >{tinerary.managerName}</Typography>
+            <Typography variant="subtitle1" > {tinerary.tags}</Typography>
+            <Typography variant="subtitle2" >price: {tinerary.price} - Duration: {tinerary.time}hs  <FavoriteBorderIcon></FavoriteBorderIcon>   </Typography>
             <CardActions disableSpacing>
                 <Box tinDat="asd" />
                 <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
@@ -118,13 +130,20 @@ const ExpandMore = styled((props) => {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '80%'}} className='width60'> 
-                 {/* <Activities activities={activity} />  */}
   <CardExpand ></CardExpand> {/*//CardExpand = {tinerarySearch}  */}
                 <Typography variant="h5" className='fredokaFont' sx={{margin: '16px', padding: '8px', textAlign: 'center', color: 'white', backgroundColor: 'rgb(120, 73, 48)'}}>See more</Typography>
                 
             </Collapse>
         </Card> 
+        )) : (<TinerariesNotSearch/>)}
 
+
+
+
+        <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch?._id} >
+    <AwesomeButton  className="buttomBackCities" size="large" type="primary">Back to Cities</AwesomeButton>
+    </LinkRouter>
+        </div>
 
     <Footer></Footer>
 </>

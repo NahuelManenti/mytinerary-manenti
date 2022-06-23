@@ -15,7 +15,7 @@ const cityActions = {
     uploadCity: (continent,country,city,photo,population)=>{
         return async(dispatch,getState)=>{
             const res = await axios.post(urlMyTin+'api/cities',{continent,country,city,photo,population})
-            dispatch({type:'UPD_CITY', payload:res.data.response.cities})
+            dispatch({type:'UPLOAD_CITY', payload:res.data.response.cities})
         }
     },
 
@@ -44,7 +44,7 @@ const cityActions = {
 
     filterCities: (input) => {
         return (dispatch,getState)=>{
-            dispatch({type:'FIL_CITIES', payload:input})
+            dispatch({type:'FILTER_CITIES', payload:input})
         }
     }
 }

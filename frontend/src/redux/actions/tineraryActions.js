@@ -14,7 +14,7 @@ const tineraryActions = {
     uploadTinerary: (city,managerPhoto,managerName,itinerary,price,time,tags,description,likes)=>{
         return async(dispatch,getState)=>{
             const res = await axios.post(urlMyTin+'api/tineraries',{city,managerPhoto,managerName,itinerary,price,time,tags,description,likes})
-            dispatch({type:'UPD_TINERARY', payload:res.data.response.tineraries})
+            dispatch({type:'UPLOAD_TINERARY', payload:res.data.response.tineraries})
         }
     },
 
@@ -47,7 +47,7 @@ const tineraryActions = {
             try {
                 const res = await axios.get(urlMyTin+`api/tineraries/cities/${id}`)
                 //console.log(answer.data);
-                dispatch({type:'FIL_TINERARIES', payload:res.data.response.tineraries[0]})
+                dispatch({type:'FILTER_TINERARIES', payload:res.data.response.tineraries})
                 // console.log(res)
             }catch (err) {
                 console.log(err)

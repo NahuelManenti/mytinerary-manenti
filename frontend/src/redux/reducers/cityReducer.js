@@ -13,7 +13,7 @@ const cityReducer = (state = initialState, action) => { //defino el reductor, qu
                 cities: action.payload,
                 filterCity: action.payload //filtrado
             }
-        case 'UPD_CITY':
+        case 'UPLOAD_CITY':
             let cities = [...state.cities]
             cities.push(action.payload)
             return{
@@ -31,7 +31,7 @@ const cityReducer = (state = initialState, action) => { //defino el reductor, qu
                 ...state,
                 oneCity: action.payload
             }
-        case 'FIL_CITIES':
+        case 'FILTER_CITIES':
             let cityFilter = state.cities.filter(city => city.name.toLowerCase().startsWith(action.payload.trim().toLowerCase()))
             return {
                 ...state,

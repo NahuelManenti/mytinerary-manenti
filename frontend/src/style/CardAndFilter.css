@@ -30,7 +30,7 @@
    
 }
 .centerCardAndFilter1{
-    margin: 3vh;
+    /* margin: 3vh; */
 }
 /* .centerCardAndFilter2{
     margin: 3vh;
@@ -201,9 +201,9 @@ img {
 }
 
 
-.buttomBackCities{
-  padding-top: 7vh;
-}
+/* .buttomBackCities{
+
+} */
 
 .containerPageCitiesDetails{
   background-image: url(https://images.pexels.com/photos/1802268/pexels-photo-1802268.jpeg);
@@ -212,7 +212,7 @@ img {
   justify-content: center;
   align-items: center;
   /* padding-right: 3vh; */
-  /* padding-bottom: 3vh; */
+  padding-bottom: 3vh;
   
   
 }

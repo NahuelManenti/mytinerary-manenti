@@ -11,7 +11,7 @@ const tineraryReducer = (state = initialState, action) => {
                 ...state,
                 tineraries: action.payload
             }
-        case 'UPD_TINERARY':
+        case 'UPLOAD_TINERARY':
             let tineraries = [...state.tineraries]
             tineraries.push(action.payload)
             return{
@@ -25,7 +25,7 @@ const tineraryReducer = (state = initialState, action) => {
                 tineraries: action.payload
             }
 
-        case 'FIL_TINERARIES':
+        case 'FILTER_TINERARIES':
             return {
                 ...state,
                 filterTin: action.payload
