@@ -17,10 +17,10 @@ import '../style/Navbar.css';
 
 
 
-const settings = ['Log In', 'Sign Up'];
+// const settings = ['Log In', 'Sign Up'];
 
 const pags = [{to: '/index', name:'Home'}, {to: '/cities', name:'Cities'} ];
-// const settingsLogo = [{to: '/cities', name:'Log In'}, {to: '/cities', name:'Log Out'}];//por ahora a cities
+const settingsLogo = [{to: '/login', name:'Log In'}, {to: '/signup', name:'Sign Up'}];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -151,9 +151,11 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {settingsLogo.map((setting, index) => (
+                <MenuItem key={index} onClick={handleCloseUserMenu}>
+                  <LinkRouter to={setting.to}>
+                  <Typography textAlign="center">{setting.name}</Typography>
+                  </LinkRouter>
                 </MenuItem>
               ))}
             </Menu>

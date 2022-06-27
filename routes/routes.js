@@ -4,7 +4,8 @@ const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} = citiesControllers
 const tineraryController = require('../controllers/tineraryControllers')
 const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
-
+const userController = require('../controllers/userControllers')
+const {signUpUser,logInUser} = userController
 
 
 
@@ -25,7 +26,7 @@ Router.route("/multiplesTineraris")
 
 Router.route('/tineraries')
 .get(getTineraries)
-.post(uploadTinerary)
+.post(uploadTinerary) 
 
 Router.route('/tineraries/:id')
 .delete(deleteTin)
@@ -34,6 +35,13 @@ Router.route('/tineraries/:id')
 
 Router.route('/tineraries/cities/:id')
 .get(findTinFromCity)
+
+
+Router.route('/auth/signUp')
+.post(signUpUser)
+
+Router.route('/auth/logIn')
+.post(logInUser)
 
 
 module.exports= Router

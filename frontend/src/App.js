@@ -12,12 +12,15 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { useDispatch } from 'react-redux';
 import {useEffect} from "react"
 import cityActions from './redux/actions/cityActions';
+import PageLogin from './pages/PageLogin';
+import PageSignUp from './pages/PageSignUp';
 
 function App() {
 
   const dispatch = useDispatch();
   useEffect( () => {
     dispatch(cityActions.getCities())
+    // eslint-disable-next-line
   },[])
 
  
@@ -34,6 +37,8 @@ function App() {
             <Route path='/cities' element={<PageCities />}  />
             <Route path='/index' element={<PageHome />}  />
             <Route path='/cities/:idCardsCountris' element={<PageCitiesDetails />}  />
+            <Route path='/login' element={<PageLogin />}  />
+            <Route path='/signup' element={<PageSignUp />}  />
           </Routes>
           <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>
 

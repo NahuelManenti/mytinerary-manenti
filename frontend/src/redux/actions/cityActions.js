@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let urlMyTin = 'http://localhost:4000/'
+let urlLocalHost = 'http://localhost:4000/'
 
 const cityActions = {
 
@@ -14,7 +14,7 @@ const cityActions = {
 
     uploadCity: (continent,country,city,photo,population)=>{
         return async(dispatch,getState)=>{
-            const res = await axios.post(urlMyTin+'api/cities',{continent,country,city,photo,population})
+            const res = await axios.post(urlLocalHost+'api/cities',{continent,country,city,photo,population})
             dispatch({type:'UPLOAD_CITY', payload:res.data.response.cities})
         }
     },
@@ -22,7 +22,7 @@ const cityActions = {
     deleteCity: (id) => {
         return async(dispatch, getState) => {
             try {
-                const res = await axios.delete(urlMyTin+`api/cities/${id}`)
+                const res = await axios.delete(urlLocalHost+`api/cities/${id}`)
                 dispatch({type:'DEL_CITY', payload:res.data.response.cities})
             }catch (err) {
                 console.log(err)
