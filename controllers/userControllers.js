@@ -9,9 +9,8 @@ const userControllers = {
     signUpUser: async (req,res) => {
         //console.log('REQ BODY')
         //console.log(req.body)
-        let {name, lastName, email, password, from, userPhoto, country} = req.body.userData
-        const test = req.body.test
-        try {
+        let {name, lastName, email, password, from, userPhoto, country} = req.body.userData 
+        try { 
             const myUser = await Users.findOne({email})
             //console.log(myUser)
             if (myUser) { 
@@ -20,13 +19,13 @@ const userControllers = {
                     res.json({
                         success: false,
                         from: "SignUpForm",
-                        message: `user ${email} already exists, please LOG IN!`}) 
+                        message: `user ${email} successful register, please LOG IN!`}) 
                 } else { 
                     const hashWord = bcryptjs.hashSync(password, 10) 
                     myUser.from.push(from)  
                     myUser.password.push(hashWord) 
                     if (from === "SignUpForm") { 
-                        myUser.uniqueString = crypto.randomBytes(15).toString('hex') 
+                        // myUser.uniqueString = crypto.randomBytes(15).toString('hex')                    POR EL MOMENTO
                         await myUser.save() 
                         await sendEmail(email, myUser.uniqueString) 
                         res.json({
@@ -49,7 +48,7 @@ const userControllers = {
                     email,
                     password: [hashWord],
                     from: [from],
-                    uniqueString: crypto.randomBytes(15).toString('hex'),
+                    // uniqueString: crypto.randomBytes(15).toString('hex'),                               POR EL MOMENTO
                     userPhoto,
                     country,
                     verification: false})
@@ -65,12 +64,12 @@ const userControllers = {
                     res.json({
                         success: true, 
                         from:"externalSignUp",
-                        message: `you SIGN UP by ${from}! now LOG IN!`})
+                        message: `you SIGN UP by ${from}! now LOG IN!`}) 
                 }
             }
         } catch (error) {
             console.log(error)
-            res.json({success: false, message: "sorry! try again in ten minutes!"})
+            res.json({success: false, message: "sorry! Please try again!"})
         }
     },
 
@@ -93,7 +92,7 @@ const userControllers = {
                                 userPhoto: myUser.userPhoto,
                                 from: myUser.from}
                             //console.log(userData)
-                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                            // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })       POR EL MOMENTO
                             res.json({
                                 success: true, 
                                 from: from, 
@@ -122,7 +121,7 @@ const userControllers = {
                             from: myUser.from}
                         //console.log(userData)
                         await myUser.save()
-                        const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })
+                        // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })         POR EL MOMENTO
                         res.json({ success: true, 
                             from: from, 
                             response: {token, userData}, 

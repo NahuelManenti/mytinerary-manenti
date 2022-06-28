@@ -1,4 +1,5 @@
 const Router = require('express'). Router();
+const validator = require('../config/validator')
 
 const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} = citiesControllers
@@ -38,7 +39,7 @@ Router.route('/tineraries/cities/:id')
 
 
 Router.route('/auth/signUp')
-.post(signUpUser)
+.post(validator, signUpUser)
 
 Router.route('/auth/logIn')
 .post(logInUser)

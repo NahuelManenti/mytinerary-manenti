@@ -8,21 +8,32 @@ import LocationCityIcon from '@mui/icons-material/LocationCity'
 import Typography from '@mui/material/Typography'
 import {Link as LinkRouter} from "react-router-dom"
 
-import "../style/SignUp.css";
-export default function SignUp(props) {
+import userActions from '../redux/actions/userActions'; 
+// import {connect} from 'react-redux'
+import { useDispatch, useSelector  } from 'react-redux';//
 
+
+import "../style/SignUp.css";
+
+
+export default  function SignUp() { 
+
+    const dispatch = useDispatch();
+    const message = useSelector(store => store.userReducer.message)
 
     const [name,setName] = useState("")
     const [lastName,setLastName] = useState("")
     const [userPhoto,setUserPhoto] = useState("")
     const [country,setCountry] = useState("")
-    const [mail,setMail] = useState("")
+    const [mail,setMail] = useState("") 
     const [pass,setPass] = useState("")
 
     var countries = ["","Mexico","England","United States","South Asia","Spain","Argentina","Japan","Russia","Brazil","France","Other Country"]
 
+    
+
     const handleSubmit = (event) => {
-        event.preventDefault() //prevenimos la accion del submit(que no recargue la pagina)
+        event.preventDefault() //prevenimos la accion del submit
         const userData = {
 			name: name,
             lastName: lastName,
@@ -32,14 +43,14 @@ export default function SignUp(props) {
 			password: pass,
 			from: "SignUpForm"
 		}
-        props.signUpUser(userData)
+        dispatch(userActions.signUpUser(userData))
     }
 
 
 
   return (
     
-        <Box className='main main-back-sign'>
+        <Box className='containerSignUp'>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -49,7 +60,8 @@ export default function SignUp(props) {
                 width: '100%',
                 minHeight: '57.5vh',
                 backgroundColor: 'rgb(21, 23, 166, 0.3)'}}>
-                <Box sx={{
+                <Box className='opacitySignUp'
+                     sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: '1',
@@ -57,16 +69,15 @@ export default function SignUp(props) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    marginTop: '10px',
-                    marginBottom: '10px'}}>
+                    }}>
                     <>
-                        <Typography variant="h2" className='festiveFont violetShadows' sx={{padding: '10px'}}>Register Form</Typography>
-                        <form onSubmit={handleSubmit} className='w100'>
+                        <Typography variant="h4" className='registerSignUp'  sx={{padding: '10px' }}>Register</Typography>
+                        <form onSubmit={handleSubmit} className=''>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(16, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px'}}>
                                 <label htmlFor="name">
                                 <PersonIcon sx={{
@@ -74,18 +85,18 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='text' name='name' id='name' placeholder='first name' className='myInput' value={name} onChange={e=>setName(e.target.value)} required />
+                                <input type='text' name='name' id='name' placeholder='first name' className='myInputRegister' value={name} onChange={e=>setName(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="lastName">
@@ -94,18 +105,18 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='text' name='lastName' id='lastName' placeholder='last name' className='myInput' value={lastName} onChange={e=>setLastName(e.target.value)} required />
+                                <input type='text' name='lastName' id='lastName' placeholder='last name' className='myInputRegister' value={lastName} onChange={e=>setLastName(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="userPhoto">
@@ -114,18 +125,18 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='text' name='userPhoto' id='userPhoto' placeholder="photo's URL" className='myInput' value={userPhoto} onChange={e=>setUserPhoto(e.target.value)} required />
+                                <input type='text' name='userPhoto' id='userPhoto' placeholder="photo's URL" className='myInputRegister' value={userPhoto} onChange={e=>setUserPhoto(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="country">
@@ -134,12 +145,12 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <select name="country" id="country" className='myInput' onChange={e=>setCountry(e.target.value)} required>
+                                <select name="country" id="country" className='myInputRegister' onChange={e=>setCountry(e.target.value)} required>
                                     {countries.map( everyCountry =>
                                     <option key={everyCountry} value={everyCountry}>{everyCountry}</option>)}
                                 </select>
@@ -148,7 +159,7 @@ export default function SignUp(props) {
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="email">
@@ -157,18 +168,18 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='email' name='email' id='email' placeholder='mail' className='myInput' value={mail} onChange={e=>setMail(e.target.value)} required />
+                                <input type='email' name='email' id='email' placeholder='mail' className='myInputRegister' value={mail} onChange={e=>setMail(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="password">
@@ -177,12 +188,12 @@ export default function SignUp(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='password' name='password' id='password' placeholder='password' className='myInput' value={pass} onChange={e=>setPass(e.target.value)} required/>
+                                <input type='password' name='password' id='password' placeholder='password' className='myInputRegister' value={pass} onChange={e=>setPass(e.target.value)} required/>
                             </Box>
                             <Box sx={{
                                 display: 'flex',

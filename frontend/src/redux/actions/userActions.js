@@ -7,7 +7,7 @@ let urlLocalHost = 'http://localhost:4000/'
         //console.log(userData)
         return async (dispatch, getState) => {
             const res = await axios.post(urlLocalHost+'api/auth/signUp', {userData})
-            //console.log(res)
+            console.log(res)
             dispatch({
                 type: 'message',
                 payload: {

@@ -1,0 +1,38 @@
+.containerLogin{
+    background-image: url(https://i.gifer.com/7S4z.gif);
+    background-position: 50% 90% ;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: #c3bbf8  ;
+   
+}
+.opacityLogin{
+    background: rgb(0, 0, 0);
+    opacity: 0.7;
+}
+
+.myInputLogin{
+    color: rgb(252, 252, 252);
+    text-align: start;
+    padding: 2px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    border: 0 solid rgb(30, 44, 133);
+    border-radius: 0 50px 50px 0;
+    height: 30px;
+    background-color: rgba(34, 33, 33, 0.6);
+}
+
+@media (max-width: 965px) {
+    .containerLogin {
+    background-position: 50% 50% ;
+    background-size: cover;
+
+    }
+  }
+
+
+.registerLogin{
+    color: rgb(255, 255, 255); text-shadow: rgb(1, 1, 49) 0.1em 0.1em 0.2em
+  }

@@ -6,10 +6,15 @@ import Typography from '@mui/material/Typography'
 import {Link as LinkRouter} from "react-router-dom"
 import "../style/Login.css";
 
+import { useDispatch } from 'react-redux'
+import userActions from '../redux/actions/userActions'; 
+
 export default function Login(props) {
         const [mail,setMail] = useState("")
         const [pass,setPass] = useState("")
     
+        const dispatch = useDispatch();
+
         const handleSubmit = (event) => {
             event.preventDefault() //prevenimos la accion del submit
             const userLogin = {
@@ -17,10 +22,10 @@ export default function Login(props) {
                 password: pass,
                 from: "LogInForm"
             }
-            props.logInUser(userLogin)
+            dispatch(userActions.logInUser(userLogin))
         }
   return (
-        <Box className='main main-back-sign'>
+        <Box className='containerLogin'>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -30,7 +35,8 @@ export default function Login(props) {
                 width: '100%',
                 minHeight: '57.5vh',
                 backgroundColor: 'rgb(21, 23, 166, 0.3)'}}>
-                <Box sx={{
+                <Box className='opacityLogin'
+                    sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: '1',
@@ -38,16 +44,15 @@ export default function Login(props) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '100%',
-                    marginTop: '10px',
-                    marginBottom: '10px'}}>
+                    }}>
                     <>
-                        <Typography variant="h2" className='festiveFont violetShadows' sx={{padding: '10px'}}>Welcome!</Typography>
-                        <form onSubmit={handleSubmit} className='w100'>
+                        <Typography variant="h3" className='registerLogin' sx={{padding: '10px'}}>Welcome!</Typography>
+                        <form onSubmit={handleSubmit} className=''>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px'}}>
                                 <label htmlFor="email">
                                     <MailIcon sx={{
@@ -55,18 +60,18 @@ export default function Login(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                        width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='email' name='email' id='email' placeholder='mail' className='myInput' value={mail} onChange={e=>setMail(e.target.value)} required />
+                                <input type='email' name='email' id='email' placeholder='mail' className='myInputLogin' value={mail} onChange={e=>setMail(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
                                 width: '40%',
                                 minWidth: '280px',
-                                border: '5px solid rgb(196, 165, 126)',
+                                border: '5px solid rgb(30, 44, 133)',
                                 borderRadius: '50px',
                                 marginTop: '10px'}}>
                                 <label htmlFor="password">
@@ -75,12 +80,12 @@ export default function Login(props) {
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         color: 'white',
-                                        backgroundColor: 'rgb(196, 165, 126)',
-                                        borderRadius: '50px 0 0 50px',
-                                        width: '30px',
+                                        backgroundColor: 'rgb(000, 000, 000)',
+                                        borderRadius: '9px 0 0 9px',
+                                       width: '40px',
                                         height: '30px'}}/>
                                 </label>
-                                <input type='password' name='password' id='password' placeholder='password' className='myInput' value={pass} onChange={e=>setPass(e.target.value)} required />
+                                <input type='password' name='password' id='password' placeholder='password' className='myInputLogin' value={pass} onChange={e=>setPass(e.target.value)} required />
                             </Box>
                             <Box sx={{
                                 display: 'flex',
