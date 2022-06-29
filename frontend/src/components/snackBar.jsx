@@ -5,13 +5,13 @@ import Snackbar from '@mui/material/Snackbar'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
-//importo acciones de redux
-import {connect} from 'react-redux'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-function MySnackBar(props) {
-    //console.log(props)
+export default function SnackBar () {
+
+    const message = useSelector(store => store.userReducer.snackbar)
     const dispatch = useDispatch()
+ console.log(message)
     const handleClose = () => {
         dispatch({
             type: 'message',
@@ -21,21 +21,21 @@ function MySnackBar(props) {
     const action = (
         <Box className='fredokaFont' sx={{
             width: '100%',
-            backgroundColor: props.snackbar.success ? 'rgb(165, 126, 196)':'rgb(196, 165, 126)',
+            backgroundColor: message.success ? 'rgb(165, 126, 196)':'rgb(196, 165, 126)',
             color: 'white',
             borderRadius: '4px',
             padding: '4px',
             fontWeight: '400'}}>
-            {(typeof props.snackbar.message) === "string" ?
-                (<p>{props.snackbar.message}</p>) :
-                <div>{props.snackbar.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
+            {(typeof message.message) === "string" ?
+                (<p>{message.message}</p>) :
+                <div>{message.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
             }
 
         </Box>
     )
     return (
         <Snackbar
-            open={props.snackbar.view}
+            open={message.view}
             autoHideDuration={5000}
             onClose={handleClose}
             action={action}
@@ -48,10 +48,5 @@ function MySnackBar(props) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        snackbar: state.userReducer.snackbar,
-    }
-}
 
-export default connect(mapStateToProps, null)(MySnackBar)
+

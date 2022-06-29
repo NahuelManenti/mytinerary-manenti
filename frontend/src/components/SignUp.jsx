@@ -7,7 +7,10 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera'
 import LocationCityIcon from '@mui/icons-material/LocationCity'
 import Typography from '@mui/material/Typography'
 import {Link as LinkRouter} from "react-router-dom"
-
+import Button from '@mui/material/Button'
+import SendIcon from '@mui/icons-material/Send';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import Stack from '@mui/material/Stack'; //row
 import userActions from '../redux/actions/userActions'; 
 // import {connect} from 'react-redux'
 import { useDispatch, useSelector  } from 'react-redux';//
@@ -202,8 +205,16 @@ export default  function SignUp() {
                                 minWidth: '280px',
                                 marginTop: '10px'}}>
                                 {/* <GoogleSignIn /> */}
-                                <button type="submit" className='myButton'>sign up!</button>
-                                <LinkRouter to={'/login'} className='anchor festiveFont violetShadows'>Log in!</LinkRouter>
+                                <Stack  direction="row" spacing={10}>
+                                        <Button variant="contained" className='buttonsSingUp'  type="submit" endIcon={<SendIcon />}>
+                                            Send
+                                        </Button>
+                                        <LinkRouter to={'/login'}>
+                                            <Button variant="contained" color="secondary" endIcon={<AccessibilityNewIcon />}>
+                                                Login
+                                            </Button>
+                                        </LinkRouter>
+                                </Stack>
                                 {/* <FacebookSignIn /> */}
                             </Box>
                         </form>

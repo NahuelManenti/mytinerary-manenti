@@ -36,3 +36,8 @@
 .registerLogin{
     color: rgb(255, 255, 255); text-shadow: rgb(1, 1, 49) 0.1em 0.1em 0.2em
   }
+
+  .buttonsLogin{
+    width: 130px;
+    height: 35.5px !important;
+  }

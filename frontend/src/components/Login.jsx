@@ -5,11 +5,15 @@ import KeyIcon from '@mui/icons-material/Key'
 import Typography from '@mui/material/Typography'
 import {Link as LinkRouter} from "react-router-dom"
 import "../style/Login.css";
+import Button from '@mui/material/Button'
+import SendIcon from '@mui/icons-material/Send';
+import AddReactionIcon from '@mui/icons-material/AddReaction';
+import Stack from '@mui/material/Stack'; //row
 
 import { useDispatch } from 'react-redux'
 import userActions from '../redux/actions/userActions'; 
 
-export default function Login(props) {
+export default function Login() {
         const [mail,setMail] = useState("")
         const [pass,setPass] = useState("")
     
@@ -94,10 +98,16 @@ export default function Login(props) {
                                 minWidth: '280px',
                                 marginTop: '10px'}}>
                                 {/* <GoogleSignIn /> */}
-                                <input type="submit" value='log in!' className='myButton fredokaFont' required />
-                                <LinkRouter to={'/signup'} className='anchor festiveFont violetShadows'>
-                                    Sign up!
-                                </LinkRouter>
+                                <Stack  direction="row" spacing={2}>
+                                        <Button variant="contained" className='buttonsLogin' value='log in!' type="submit" required  endIcon={<SendIcon />}>
+                                            Starting
+                                        </Button>
+                                        <LinkRouter className='buttonsLogin' to={'/signup'}>
+                                            <Button variant="contained" color="secondary"  endIcon={<AddReactionIcon />}>
+                                                Sign Up!
+                                            </Button>
+                                        </LinkRouter>
+                                </Stack>
                                 {/* <FacebookSignIn /> */}
                             </Box>
                         </form>

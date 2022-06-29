@@ -27,7 +27,7 @@ const userControllers = {
                     if (from === "SignUpForm") { 
                         // myUser.uniqueString = crypto.randomBytes(15).toString('hex')                    POR EL MOMENTO
                         await myUser.save() 
-                        await sendEmail(email, myUser.uniqueString) 
+                        // await sendEmail(email, myUser.uniqueString) 
                         res.json({
                             success: true, 
                             from: "SignUpForm", 
@@ -54,7 +54,7 @@ const userControllers = {
                     verification: false})
                 if (from === "SignUpForm") { 
                     await myNewTUser.save() 
-                    await sendEmail(email, myNewTUser.uniqueString) 
+                    // await sendEmail(email, myNewTUser.uniqueString) 
                     res.json({
                         success: true, 
                         from:"SignUpForm",

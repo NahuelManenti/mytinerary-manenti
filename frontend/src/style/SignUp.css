@@ -36,3 +36,8 @@
 .registerSignUp{
     color: rgba(255, 255, 255, 0.781); text-shadow: rgb(1, 1, 49) 0.1em 0.1em 0.2em
   }
+
+.buttonsSingUp{
+     height: 35.5px !important;
+     width: 100px;
+}
