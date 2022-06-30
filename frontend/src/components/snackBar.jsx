@@ -11,7 +11,7 @@ export default function SnackBar () {
 
     const message = useSelector(store => store.userReducer.snackbar)
     const dispatch = useDispatch()
- console.log(message)
+//  console.log(message)
     const handleClose = () => {
         dispatch({
             type: 'message',
@@ -21,7 +21,7 @@ export default function SnackBar () {
     const action = (
         <Box className='fredokaFont' sx={{
             width: '100%',
-            backgroundColor: message.success ? 'rgb(165, 126, 196)':'rgb(196, 165, 126)',
+            backgroundColor: message.success ? 'rgb(036, 173, 009)':'rgb(255, 000, 000)',
             color: 'white',
             borderRadius: '4px',
             padding: '4px',

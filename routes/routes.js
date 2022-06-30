@@ -6,7 +6,7 @@ const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} 
 const tineraryController = require('../controllers/tineraryControllers')
 const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
 const userController = require('../controllers/userControllers')
-const {signUpUser,logInUser} = userController
+const {signUpUser,logInUser,verifyMail} = userController
 
 
 
@@ -44,5 +44,7 @@ Router.route('/auth/signUp')
 Router.route('/auth/logIn')
 .post(logInUser)
 
+Router.route('/verify/:String')
+.get(verifyMail)
 
 module.exports= Router

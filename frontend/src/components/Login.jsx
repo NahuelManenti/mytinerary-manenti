@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import Stack from '@mui/material/Stack'; //row
+import SnackBar from './SnackBar'
 
 import { useDispatch } from 'react-redux'
 import userActions from '../redux/actions/userActions'; 
@@ -30,6 +31,7 @@ export default function Login() {
         }
   return (
         <Box className='containerLogin'>
+            <SnackBar />
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -97,7 +99,6 @@ export default function Login() {
                                 width: '40%',
                                 minWidth: '280px',
                                 marginTop: '10px'}}>
-                                {/* <GoogleSignIn /> */}
                                 <Stack  direction="row" spacing={2}>
                                         <Button variant="contained" className='buttonsLogin' value='log in!' type="submit" required  endIcon={<SendIcon />}>
                                             Starting
@@ -108,7 +109,6 @@ export default function Login() {
                                             </Button>
                                         </LinkRouter>
                                 </Stack>
-                                {/* <FacebookSignIn /> */}
                             </Box>
                         </form>
                     </>

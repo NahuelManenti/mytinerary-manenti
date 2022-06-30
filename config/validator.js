@@ -34,13 +34,14 @@ const validator = (req, res, next) => {
                 'string.email': '"mail": incorrect format'}),
         password: joi.string()
             .min(8)
-            .max(30)
+            .max(40)
             .pattern(new RegExp('[a-zA-Z0-9]'))
             .required()
             .messages({
                 'string.min': '"password": min 8 characters',
                 'string.max': '"password": max 30 characters'}),
-        from: joi.string()
+        from: joi.string(),
+        role: joi.string()
     })
     const validation = schema.validate(req.body.userData, {abortEarly:false})
     if (validation.error) {

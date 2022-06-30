@@ -6,12 +6,13 @@ const usersSchema = new mongoose.Schema ({
     email: {type:String, required:true},
     password: {type:Array, required:true},
     userPhoto: {type:String, required:true},
-    country: {type:String, required:true},
+    country: {type:String},
+    role: {type:String},
     from: {type:Array},
-    // uniqueString: {type:String, required:true},
-    // verification: {type:Boolean, required:true}
+    uniqueString: {type:String, required:true},
+    verification: {type:Boolean, required:true}
 })
 
-const Users = mongoose.model('users',usersSchema) 
-module.exports = Users  
+const User = mongoose.model('users',usersSchema) 
+module.exports = User  
 

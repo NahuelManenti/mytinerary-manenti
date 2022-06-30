@@ -13,17 +13,18 @@ import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import Stack from '@mui/material/Stack'; //row
 import userActions from '../redux/actions/userActions'; 
 // import {connect} from 'react-redux'
-import { useDispatch, useSelector  } from 'react-redux';//
-
+import { useDispatch } from 'react-redux';//
+ import SnackBar from './SnackBar'
 
 import "../style/SignUp.css";
+import GoogleSignUp from './GoogleSignUp'
 
 
 export default  function SignUp() { 
 
     const dispatch = useDispatch();
-    const message = useSelector(store => store.userReducer.message)
-
+    // const message = useSelector(store => store.userReducer.message)
+    
     const [name,setName] = useState("")
     const [lastName,setLastName] = useState("")
     const [userPhoto,setUserPhoto] = useState("")
@@ -32,7 +33,7 @@ export default  function SignUp() {
     const [pass,setPass] = useState("")
 
     var countries = ["","Mexico","England","United States","South Asia","Spain","Argentina","Japan","Russia","Brazil","France","Other Country"]
-
+    var ordercountries = countries.sort()
     
 
     const handleSubmit = (event) => {
@@ -54,6 +55,7 @@ export default  function SignUp() {
   return (
     
         <Box className='containerSignUp'>
+            <SnackBar />
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -154,7 +156,7 @@ export default  function SignUp() {
                                         height: '30px'}}/>
                                 </label>
                                 <select name="country" id="country" className='myInputRegister' onChange={e=>setCountry(e.target.value)} required>
-                                    {countries.map( everyCountry =>
+                                    {ordercountries.map( everyCountry =>
                                     <option key={everyCountry} value={everyCountry}>{everyCountry}</option>)}
                                 </select>
                             </Box>
@@ -204,7 +206,6 @@ export default  function SignUp() {
                                 width: '40%',
                                 minWidth: '280px',
                                 marginTop: '10px'}}>
-                                {/* <GoogleSignIn /> */}
                                 <Stack  direction="row" spacing={10}>
                                         <Button variant="contained" className='buttonsSingUp'  type="submit" endIcon={<SendIcon />}>
                                             Send
@@ -215,8 +216,10 @@ export default  function SignUp() {
                                             </Button>
                                         </LinkRouter>
                                 </Stack>
+                                
                                 {/* <FacebookSignIn /> */}
                             </Box>
+                            <GoogleSignUp />
                         </form>
                     </>
                 </Box>

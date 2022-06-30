@@ -1,7 +1,7 @@
-const Users = require('../models/user')
+const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
-// const crypto = require('crypto')
-// const nodemailer = require('nodemailer')
+const crypto = require('crypto')
+const sendVerification = require('./sendVerification')
 // const jwt = require('jsonwebtoken')
 
 const userControllers = {
@@ -9,25 +9,25 @@ const userControllers = {
     signUpUser: async (req,res) => {
         //console.log('REQ BODY')
         //console.log(req.body)
-        let {name, lastName, email, password, from, userPhoto, country} = req.body.userData 
+        let {name, lastName, email, password, from, userPhoto, country, role} = req.body.userData 
         try { 
-            const myUser = await Users.findOne({email})
+            const myUser = await User.findOne({email})
+            const uniqueString = crypto.randomBytes(15).toString('hex')
             //console.log(myUser)
             if (myUser) { 
-                //console.log('this number is:'+myUser.from.indexOf(from))
                 if (myUser.from.indexOf(from) === 0) {
                     res.json({
                         success: false,
                         from: "SignUpForm",
-                        message: `user ${email} successful register, please LOG IN!`}) 
+                        message: `user ${email} already register, please LOG IN!`}) 
                 } else { 
                     const hashWord = bcryptjs.hashSync(password, 10) 
                     myUser.from.push(from)  
                     myUser.password.push(hashWord) 
                     if (from === "SignUpForm") { 
-                        // myUser.uniqueString = crypto.randomBytes(15).toString('hex')                    POR EL MOMENTO
+                         myUser.uniqueString = crypto.randomBytes(15).toString('hex')
                         await myUser.save() 
-                        // await sendEmail(email, myUser.uniqueString) 
+                        await sendVerification(email, uniqueString)  
                         res.json({
                             success: true, 
                             from: "SignUpForm", 
@@ -42,19 +42,20 @@ const userControllers = {
                 }
             } else {
                 const hashWord = bcryptjs.hashSync(password, 10) //
-                const myNewTUser = await new Users({ 
+                const myNewTUser = await new User({ 
                     name,
                     lastName,
                     email,
                     password: [hashWord],
                     from: [from],
-                    // uniqueString: crypto.randomBytes(15).toString('hex'),                               POR EL MOMENTO
+                    uniqueString: crypto.randomBytes(15).toString('hex'),                               
                     userPhoto,
                     country,
+                    role,
                     verification: false})
                 if (from === "SignUpForm") { 
                     await myNewTUser.save() 
-                    // await sendEmail(email, myNewTUser.uniqueString) 
+                    await sendVerification(email, uniqueString) 
                     res.json({
                         success: true, 
                         from:"SignUpForm",
@@ -76,7 +77,7 @@ const userControllers = {
     logInUser: async (req, res) => {
         const {email, password, from} = req.body.userLogin
         try {
-            const myUser = await Users.findOne({email}) 
+            const myUser = await User.findOne({email}) 
             if (!myUser) { 
                 res.json({success: false, message: `${email} has no account in MyTinerary, please SIGN UP!`})
             } else { 
@@ -92,7 +93,7 @@ const userControllers = {
                                 userPhoto: myUser.userPhoto,
                                 from: myUser.from}
                             //console.log(userData)
-                            // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })       POR EL MOMENTO
+                             const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })       
                             res.json({
                                 success: true, 
                                 from: from, 
@@ -138,6 +139,21 @@ const userControllers = {
             res.json({success: false, message: "sorry! try in a few minutes!"})
         }
     },
+
+    verifyMail: async (req, res) => {
+        const {string} = req.params
+        const user = await User.findOne({uniqueString: string})
+        //console.log(user)
+        if (user) {
+            user.verification = true
+            await user.save()
+            res.redirect("http://localhost:3000/login")
+        }
+        else {res.json({
+            success: false,
+            message: `email has not been confirmed yet!`})
+        }
+    }
 }
 
 module.exports = userControllers

@@ -26,6 +26,7 @@ import { Link as LinkRouter } from 'react-router-dom';
   const dispatch = useDispatch();
   useEffect( () => {
     dispatch(cityActions.filterCities(search))
+    // eslint-disable-next-line
   },[search])
 
   const city = useSelector(store => store.cityReducer.filterCity)

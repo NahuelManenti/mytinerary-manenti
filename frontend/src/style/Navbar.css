@@ -30,6 +30,7 @@
 .mytineraryFont{
     color: rgb(187, 206, 81) !important;
     font-family: 'Black Ops One', cursive;
+    margin-top: 7px;
 }
 .myFontColor{
     color: goldenrod;
