@@ -11,7 +11,7 @@ export default function SnackBar () {
 
     const message = useSelector(store => store.userReducer.snackbar)
     const dispatch = useDispatch()
-//  console.log(message)
+  // console.log(message)
     const handleClose = () => {
         dispatch({
             type: 'message',
@@ -26,22 +26,19 @@ export default function SnackBar () {
             borderRadius: '4px',
             padding: '4px',
             fontWeight: '400'}}>
-            {(typeof message.message) === "string" ?
-                (<p>{message.message}</p>) :
-                <div>{message.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
+            {(typeof message.message) === "string" ? (<p>{message.message}</p>) : <div>{message.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
             }
-
         </Box>
     )
     return (
         <Snackbar
             open={message.view}
-            autoHideDuration={5000}
+            autoHideDuration={4000}
             onClose={handleClose}
             action={action}
             message={
                 <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-                    <CloseIcon fontSize="small" />
+                    <CloseIcon fontSize="large" />
                 </IconButton>
             } 
         />

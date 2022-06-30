@@ -44,7 +44,7 @@ Router.route('/auth/signUp')
 Router.route('/auth/logIn')
 .post(logInUser)
 
-Router.route('/verify/:String')
+Router.route('/verify/:string')
 .get(verifyMail)
 
 module.exports= Router

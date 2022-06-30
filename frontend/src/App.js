@@ -9,13 +9,17 @@ import PageError404 from './pages/PageError404';
 import PageCitiesDetails from './pages/PageCitiesDetails';
 import ScrollToTop from 'react-scroll-to-top';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {useEffect} from "react"
 import cityActions from './redux/actions/cityActions';
 import PageLogin from './pages/PageLogin';
 import PageSignUp from './pages/PageSignUp';
+import SnackBar from './components/SnackBar';
+
 
 function App() {
+
+  // const tokens = useSelector(store => store.userReducer.user)
 
   const dispatch = useDispatch();
   useEffect( () => {
@@ -23,6 +27,12 @@ function App() {
     // eslint-disable-next-line
   },[])
 
+//   useEffect(() => {
+//     if(localStorage.getItem('token')!== null) {
+//         const token = localStorage.getItem("token")
+//         tokens.verifyToken(token)
+//     }
+// },[])
  
 
 
@@ -40,6 +50,7 @@ function App() {
             <Route path='/login' element={<PageLogin />}  />
             <Route path='/signup' element={<PageSignUp />}  />
           </Routes>
+          <SnackBar/>
           <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>
 
       {/* <Footer/> */}

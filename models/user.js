@@ -7,7 +7,6 @@ const usersSchema = new mongoose.Schema ({
     password: {type:Array, required:true},
     userPhoto: {type:String, required:true},
     country: {type:String},
-    role: {type:String},
     from: {type:Array},
     uniqueString: {type:String, required:true},
     verification: {type:Boolean, required:true}

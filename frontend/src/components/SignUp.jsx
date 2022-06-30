@@ -32,6 +32,13 @@ export default  function SignUp() {
     const [mail,setMail] = useState("") 
     const [pass,setPass] = useState("")
 
+     //BORRAR FORMULARIO
+    // setName ('')
+    // setLastName ('')
+    // setMail ('')
+    // setPass ('')
+    // setUserPhoto ('')
+
     var countries = ["","Mexico","England","United States","South Asia","Spain","Argentina","Japan","Russia","Brazil","France","Other Country"]
     var ordercountries = countries.sort()
     
@@ -216,10 +223,8 @@ export default  function SignUp() {
                                             </Button>
                                         </LinkRouter>
                                 </Stack>
-                                
-                                {/* <FacebookSignIn /> */}
                             </Box>
-                            <GoogleSignUp />
+                             <GoogleSignUp /> 
                         </form>
                     </>
                 </Box>

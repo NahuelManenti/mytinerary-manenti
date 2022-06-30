@@ -1,159 +1,171 @@
 const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
-const crypto = require('crypto')
 const sendVerification = require('./sendVerification')
-// const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 
-const userControllers = {
 
-    signUpUser: async (req,res) => {
-        //console.log('REQ BODY')
-        //console.log(req.body)
-        let {name, lastName, email, password, from, userPhoto, country, role} = req.body.userData 
-        try { 
-            const myUser = await User.findOne({email})
-            const uniqueString = crypto.randomBytes(15).toString('hex')
-            //console.log(myUser)
-            if (myUser) { 
-                if (myUser.from.indexOf(from) === 0) {
+const userController = {
+
+   
+    signUpUser: async (req, res) => {
+        let { name, lastName, email, password, from, userPhoto, country, role} = req.body.userData 
+
+        try { // trata
+
+            const myUser = await User.findOne({ email }) 
+            const verification = false 
+            const uniqueString = crypto.randomBytes(15).toString('hex') // utilizo los metodos de crypto
+
+        if (myUser) { 
+                if (myUser.from.indexOf(from) !== -1) { 
+                    
                     res.json({
-                        success: false,
-                        from: "SignUpForm",
-                        message: `user ${email} already register, please LOG IN!`}) 
-                } else { 
-                    const hashWord = bcryptjs.hashSync(password, 10) 
-                    myUser.from.push(from)  
-                    myUser.password.push(hashWord) 
-                    if (from === "SignUpForm") { 
-                         myUser.uniqueString = crypto.randomBytes(15).toString('hex')
-                        await myUser.save() 
-                        await sendVerification(email, uniqueString)  
-                        res.json({
-                            success: true, 
-                            from: "SignUpForm", 
-                            message: `check ${email}! we send you a mail to confirm your SIGN UP!`}) 
-                    } else { 
-                        myUser.save() 
-                        res.json({
-                            success: true,
-                            from:"externalSignUp", 
-                            message: `user exist! LOG IN please!`})
-                    }
+                        success: false, 
+                        from: 'SignUpForm',
+                        message: 'This email is already register, please Sign In'
+                    })
+                } else {
+
+                    const hashedPassword = bcryptjs.hashSync( password, 10) //encryptamos la nueva contraseña creada con el nuevo metodo de registro (fb, google, sign) sin reemplazar la existente
+                    myUser.from.push(from) //pusheo al modelo "from" el nuevo metodo de inicio del usuario
+                    myUser.password.push(hashedPassword) // pusheo la nueva contra  a el array donde tenia las demas contras del usario
+                    myUser.verification = true
+
+                    await myUser.save() //espera la respuesta de push y lo guarda
+                    res.json({
+                        success: true, 
+                        from: 'SignUpForm', 
+                        message: "Added " + from + " at your options for sign in"
+                    })
                 }
+            // si el usuario no existe lo registramos de 0
             } else {
-                const hashWord = bcryptjs.hashSync(password, 10) //
-                const myNewTUser = await new User({ 
+                const hashedPassword = bcryptjs.hashSync(password, 10) 
+                const newUser = await new User({ 
                     name,
                     lastName,
-                    email,
-                    password: [hashWord],
-                    from: [from],
-                    uniqueString: crypto.randomBytes(15).toString('hex'),                               
-                    userPhoto,
+                    email, 
                     country,
-                    role,
-                    verification: false})
-                if (from === "SignUpForm") { 
-                    await myNewTUser.save() 
-                    await sendVerification(email, uniqueString) 
-                    res.json({
-                        success: true, 
-                        from:"SignUpForm",
-                        message: `check ${email} and finish your SIGN UP!`}) 
-                    } else { 
-                    await myNewTUser.save()
-                    res.json({
-                        success: true, 
-                        from:"externalSignUp",
-                        message: `you SIGN UP by ${from}! now LOG IN!`}) 
-                }
-            }
-        } catch (error) {
-            console.log(error)
-            res.json({success: false, message: "sorry! Please try again!"})
-        }
-    },
-
-    logInUser: async (req, res) => {
-        const {email, password, from} = req.body.userLogin
-        try {
-            const myUser = await User.findOne({email}) 
-            if (!myUser) { 
-                res.json({success: false, message: `${email} has no account in MyTinerary, please SIGN UP!`})
-            } else { 
-                if (from === "LogInForm") { 
-                    if (myUser.verification ) { 
-                        let checkedWord =  myUser.password.filter(pass => bcryptjs.compareSync(password, pass)) 
-                        //console.log("resultado de busqueda de contraseña: " +(checkedWord.length >0))
-                        if (checkedWord.length > 0) {
-                            const userData = {
-                                id: myUser._id,
-                                name: myUser.name,
-                                email: myUser.email,
-                                userPhoto: myUser.userPhoto,
-                                from: myUser.from}
-                            //console.log(userData)
-                             const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })       
-                            res.json({
-                                success: true, 
-                                from: from, 
-                                response: {token, userData}, 
-                                message: `welcome back ${userData.name}!`})
-                        } else {
-                            res.json({ success: false, 
-                                from: from,  
-                                message: `verify your password!`})
-                        }
-                    } else {
+                    userPhoto,
+                    password: [hashedPassword], 
+                    uniqueString: uniqueString , 
+                    verification,
+                    from: [ from ] 
+                })
+                    if (from !== 'SignUpForm') {  
+                
+                        newUser.verification = true //  No es necesario q valide los datos de metodos de registro diferente a nuestro form
+                        
+                        await newUser.save() // evalua el metodo del nuevo usuario, cuando se cumpla. guardalo.
                         res.json({
-                            success: false, 
-                            from: from, 
-                            message:`check ${email}! confirm your SIGN UP and LOG IN!`}) 
-                    }
-                } else {
-                    let checkedWord =  myUser.password.filter(pass => bcryptjs.compareSync(password, pass))
-                    //console.log(checkedWord)
-                    if (checkedWord.length > 0) {
-                        const userData = {
-                            id: myUser._id,
-                            name: myUser.name, 
-                            email: myUser.email,
-                            userPhoto: myUser.userPhoto,
-                            from: myUser.from}
-                        //console.log(userData)
-                        await myUser.save()
-                        // const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 1000*60*60*24 })         POR EL MOMENTO
-                        res.json({ success: true, 
-                            from: from, 
-                            response: {token, userData}, 
-                            message: `welcome back ${userData.name}!`})
-                    } else {
-                        res.json({ success: false, 
-                            from: from,  
-                            message: `there is no register from ${from}, please SIGN UP`})
-                    }
+                            success: true,
+                            from: 'SignUpForm',
+                            message: 'Congratulations! User creation with ' + from + ' is completed'
+                        })
+                    } else { // si el metodo utilizado es el de nuestro formulario
+                                    await newUser.save()
+                                    await sendVerification(email, uniqueString)
+                                    res.json({
+                                        success: true,
+                                        from: 'SignUpForm',
+                                        message: 'Successfully registered, please check your mailbox to verify' 
+                                    })
                 }
-            }
-        } catch (error) {
-            console.log(error)
-            res.json({success: false, message: "sorry! try in a few minutes!"})
+                }
+        } catch (error) { // atrapa el error
+            res.json({ success: false, message: 'Something went wrong. Try again after a few minutes.'}) 
         }
     },
 
-    verifyMail: async (req, res) => {
-        const {string} = req.params
-        const user = await User.findOne({uniqueString: string})
-        //console.log(user)
-        if (user) {
-            user.verification = true
-            await user.save()
-            res.redirect("http://localhost:3000/login")
+    logInUser: async(req, res) => {
+        const { email, password, from} = req.body.userLogin
+            try{
+                const userExists = await User.findOne({ email })
+                //const indexpass = userExists.from.indexOf(from)
+                if (!userExists) {
+                    res.json({ success: false, message: 'The entered user does not exist. Please signUp'})
+                } else {
+                    if (from !== 'LogInForm') {
+                        let samePassword = userExists.password.filter(pass => bcryptjs.compareSync(password, pass))
+    
+                        if (samePassword.length == 0) {
+                            const userData = {
+                                id: userExists._id,
+                                name: userExists.name,
+                                lastName: userExists.lastName,
+                                country: userExists.country,
+                                userPhoto: userExists.userPhoto,
+                                email: userExists.email,
+                                from: from,
+                            }
+                            console.log(userData)
+                            await userExists.save()
+                            res.json({
+                                success: true,
+                                from: from,
+                                response: { userData },
+                                message: 'Welcome back ' + userData.name,
+                            })
+                        } else {
+                            res.json({
+                                success: false,
+                                from: from,
+                                message: 'You have not registered with ' + from + ' if you want to sign in with this method you must sign up with ' + from,
+                            })
+                        }
+                    } else { //si encuentra mail del metodo de nuestro form
+    
+                        let samePassword = userExists.password.filter(pass => bcryptjs.compareSync(password, pass))
+                        
+                        if (samePassword.length > 0) {
+                            const userData = {
+                                id: userExists._id,
+                                name: userExists.name,
+                                lastName: userExists.lastName,
+                                country: userExists.country,
+                                userPhoto: userExists.userPhoto,
+                                email: userExists.email,
+                                from: from,
+                            }
+                            await userExists.save()
+                            res.json({
+                                success: true,
+                                from: from,
+                                response: { userData}, //token eliminado de pdf porque todavia no lo usamos
+                                message: 'Welcome back ' + userData.name ,
+                            })
+                        } else {
+                            res.json({
+                                success: false,
+                                from: from,
+                                message: 'User name or password incorrect'
+                            })
+                        }
+                    }
+                }
+            } catch (error) {
+                res.json({ success: false, messaje: 'Something went wrong. Try again after a few minutes.'})
+            }
+        },
+    
+        verifyMail: async (req, res) => {
+            const { string } = req.params
+            const user = await User.findOne({uniqueString: string })
+            //console.log(user)
+    
+            if (user) {
+                user.verification = true
+                await user.save()
+                res.redirect('http://localhost:3000')
+            }
+            else { res.json({
+                success: false,
+                message: `email has not been confirmed yet!`
+            })
+    
+            }
         }
-        else {res.json({
-            success: false,
-            message: `email has not been confirmed yet!`})
-        }
+    
     }
-}
-
-module.exports = userControllers
+    
+    module.exports = userController
