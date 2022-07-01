@@ -17,7 +17,7 @@ export default function GoogleSignUp() {
             lastName: userObject.family_name, 
             userPhoto: userObject.picture, 
             email: userObject.email, 
-            password: userObject.jti,
+            password: userObject.sub,
             country: "internet",
             role: "user", 
             from: "google"

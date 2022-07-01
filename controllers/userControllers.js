@@ -77,78 +77,74 @@ const userController = {
         }
     },
 
-    logInUser: async(req, res) => {
-        const { email, password, from} = req.body.userLogin
-            try{
-                const userExists = await User.findOne({ email })
-                //const indexpass = userExists.from.indexOf(from)
-                if (!userExists) {
-                    res.json({ success: false, message: 'The entered user does not exist. Please signUp'})
+    logInUser: async (req, res) => {
+        const {email, password, from} = req.body.userLogin 
+        try {
+            const myTUser = await User.findOne({email}) 
+            if (!myTUser) { 
+                res.json({success: false, message: `${email} has no register, please SIGN UP!`})
+            } else { 
+                if (from === "LogInForm") { 
+                    if (myTUser.verification ) { 
+                        let checkedWord =  myTUser.password.filter(pass => bcryptjs.compareSync(password, pass)) 
+                        if (checkedWord.length > 0) {
+                            const userData = {
+                                id: myTUser._id,
+                                name: myTUser.name,
+                                email: myTUser.email,
+                                userPhoto: myTUser.userPhoto,
+                                from: myTUser.from}
+                                
+                            //console.log(userData)
+                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24 })
+                            await myTUser.save()
+                            res.json({
+                                success: true, 
+                                from: from, 
+                                response: {token, userData}, 
+                                message: `welcome back ${userData.name}!`})
+                        } else {
+                            res.json({ success: false, 
+                                from: from,  
+                                message: `verify your password!`})
+                        }
+                    } else {
+                        res.json({
+                            success: false, 
+                            from: from, 
+                            message:`check ${email}! confirm your SIGN UP and LOG IN!`}) 
+                    }
                 } else {
-                    if (from !== 'LogInForm') {
-                        let samePassword = userExists.password.filter(pass => bcryptjs.compareSync(password, pass))
-    
-                        if (samePassword.length == 0) {
-                            const userData = {
-                                id: userExists._id,
-                                name: userExists.name,
-                                lastName: userExists.lastName,
-                                country: userExists.country,
-                                userPhoto: userExists.userPhoto,
-                                email: userExists.email,
-                                from: from,
-                            }
-                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24 }) //1 hora
-                            // console.log(userData)
-                            await userExists.save()
-                            res.json({
-                                success: true,
-                                from: from,
-                                response: {token, userData },
-                                message: 'Welcome back ' + userData.name,
-                            })
-                        } else {
-                            res.json({
-                                success: false,
-                                from: from,
-                                message: 'You have not registered with ' + from + ' if you want to sign in with this method you must sign up with ' + from,
-                            })
-                        }
-                    } else { //si encuentra mail del metodo de nuestro form
-    
-                        let samePassword = userExists.password.filter(pass => bcryptjs.compareSync(password, pass))
-                        
-                        if (samePassword.length > 0) {
-                            const userData = {
-                                id: userExists._id,
-                                name: userExists.name,
-                                lastName: userExists.lastName,
-                                country: userExists.country,
-                                userPhoto: userExists.userPhoto,
-                                email: userExists.email,
-                                from: from,
-                            }
-                            await userExists.save()
-                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60*60*24 })
-                            res.json({
-                                success: true,
-                                from: from,
-                                response: {token, userData},
-                                message: 'Welcome back ' + userData.name ,
-                            })
-                        } else {
-                            res.json({
-                                success: false,
-                                from: from,
-                                message: 'User name or password incorrect'
-                            })
-                        }
+                    let checkedWord =  myTUser.password.filter(pass => bcryptjs.compareSync(password, pass))
+                    //console.log(checkedWord)
+                    if (checkedWord.length > 0) {
+                        const userData = {
+                            id: myTUser._id,
+                            name: myTUser.name, 
+                            email: myTUser.email,
+                            userPhoto: myTUser.userPhoto,
+                            from: myTUser.from}
+                        //console.log(userData)
+                       
+                         const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24 })
+                         await myTUser.save()
+                        res.json({ success: true, 
+                            from: from, 
+                            response: {token, userData}, 
+                            message: `welcome back ${userData.name}!`})
+                    } else {
+                        res.json({ success: false, 
+                            from: from,  
+                            message: `there is no register from ${from}, please SIGN UP`})
                     }
                 }
-            } catch (error) {
-                res.json({ success: false, messaje: 'Something went wrong. Try again after a few minutes.'})
             }
-        },
+        } catch (error) {
+            console.log(error)
+            res.json({success: false, message: "sorry! try in a few minutes!"})
+        }
+    },
+
         signOutUser: async (req, res) => {
             const email = req.body.closeData
             const user = await User.findOne({email})
@@ -157,8 +153,8 @@ const userController = {
         },
     
         verifyToken:(req, res) => {
-            //console.log(req.user)
-            if (!req.err) {
+            console.log(req.user)
+            if (req.user) {
             res.json({
                 success: true,
                 response: {id: req.user.id,

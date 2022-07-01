@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions'
@@ -14,7 +14,7 @@ export default function GoogleLogIn() {
         // console.log(userObject);
          dispatch(userActions.logInUser({
             email: userObject.email,
-            password: userObject.jti,
+            password: userObject.sub,
             from: 'google'
         }))
     };
@@ -29,7 +29,7 @@ export default function GoogleLogIn() {
         google.accounts.id.renderButton(
             document.getElementById('buttonDiv'),
             { theme: "outline", size: "medium" }
-        );
+        );// eslint-disable-next-line
     },[])
 
     return (

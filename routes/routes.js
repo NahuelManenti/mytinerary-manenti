@@ -45,10 +45,13 @@ Router.route('/auth/signUp')
 Router.route('/auth/logIn')
 .post(logInUser)
 
+// Router.route('/auth/signOut')
+// .post(signOutUser)
+
 Router.route('/verify/:string')
 .get(verifyMail)
 
 Router.route('/auth/loginToken')
-.get(passport.authenticate('jwt', {session:false}), verifyToken)
+.get(passport.authenticate('jwt', {session:false}),verifyToken)
 
 module.exports= Router
