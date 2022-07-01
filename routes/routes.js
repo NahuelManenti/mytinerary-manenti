@@ -1,12 +1,13 @@
 const Router = require('express'). Router();
 const validator = require('../config/validator')
+const passport = require('../config/passport')
 
 const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} = citiesControllers
 const tineraryController = require('../controllers/tineraryControllers')
 const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
 const userController = require('../controllers/userControllers')
-const {signUpUser,logInUser,verifyMail} = userController
+const {signUpUser,logInUser,verifyMail,verifyToken} = userController
 
 
 
@@ -46,5 +47,8 @@ Router.route('/auth/logIn')
 
 Router.route('/verify/:string')
 .get(verifyMail)
+
+Router.route('/auth/loginToken')
+.get(passport.authenticate('jwt', {session:false}), verifyToken)
 
 module.exports= Router

@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack'; //row
 import userActions from '../redux/actions/userActions'; 
 // import {connect} from 'react-redux'
 import { useDispatch } from 'react-redux';//
- import SnackBar from './SnackBar'
+
 
 import "../style/SignUp.css";
 import GoogleSignUp from './GoogleSignUp'
@@ -62,7 +62,7 @@ export default  function SignUp() {
   return (
     
         <Box className='containerSignUp'>
-            <SnackBar />
+            
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -224,8 +224,9 @@ export default  function SignUp() {
                                         </LinkRouter>
                                 </Stack>
                             </Box>
-                             <GoogleSignUp /> 
+                             
                         </form>
+                        <GoogleSignUp /> 
                     </>
                 </Box>
             </Box>

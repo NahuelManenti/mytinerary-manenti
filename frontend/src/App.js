@@ -19,7 +19,7 @@ import SnackBar from './components/SnackBar';
 
 function App() {
 
-  // const tokens = useSelector(store => store.userReducer.user)
+  
 
   const dispatch = useDispatch();
   useEffect( () => {
@@ -27,12 +27,15 @@ function App() {
     // eslint-disable-next-line
   },[])
 
-//   useEffect(() => {
-//     if(localStorage.getItem('token')!== null) {
-//         const token = localStorage.getItem("token")
-//         tokens.verifyToken(token)
-//     }
-// },[])
+
+//   const tokens = useSelector(store => store.userReducer.user)
+
+//    useEffect(() => {
+//      if(localStorage.getItem('token')!== null) {
+//          const token = localStorage.getItem("token")
+//          tokens.verifyToken(token)
+//      }
+//  },[])
  
 
 
@@ -47,8 +50,9 @@ function App() {
             <Route path='/cities' element={<PageCities />}  />
             <Route path='/index' element={<PageHome />}  />
             <Route path='/cities/:idCardsCountris' element={<PageCitiesDetails />}  />
-            <Route path='/login' element={<PageLogin />}  />
+            <Route path='/login' element={<PageLogin />} />
             <Route path='/signup' element={<PageSignUp />}  />
+            <Route path='/signout' element={<PageHome/>} />
           </Routes>
           <SnackBar/>
           <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>

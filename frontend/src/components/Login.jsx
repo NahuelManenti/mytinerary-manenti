@@ -9,7 +9,8 @@ import Button from '@mui/material/Button'
 import SendIcon from '@mui/icons-material/Send';
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import Stack from '@mui/material/Stack'; //row
-import SnackBar from './SnackBar'
+import GoogleLogIn from './GoogleLogIn'
+
 
 import { useDispatch } from 'react-redux'
 import userActions from '../redux/actions/userActions'; 
@@ -33,7 +34,7 @@ export default function Login() {
         }
   return (
         <Box className='containerLogin'>
-            <SnackBar />
+            
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -106,13 +107,14 @@ export default function Login() {
                                             Starting
                                         </Button>
                                         <LinkRouter className='buttonsLogin' to={'/signup'}>
-                                            <Button variant="contained" color="secondary"  endIcon={<AddReactionIcon />}>
+                                            <Button variant="contained" color="secondary" required  endIcon={<AddReactionIcon />}>
                                                 Sign Up!
                                             </Button>
                                         </LinkRouter>
                                 </Stack>
                             </Box>
                         </form>
+                        <GoogleLogIn/>
                     </>
                 </Box>
             </Box>

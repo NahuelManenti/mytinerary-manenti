@@ -16,9 +16,6 @@ import { Link as LinkRouter } from 'react-router-dom';
 import '../style/Navbar.css';
 
 
-
-// const settings = ['Log In', 'Sign Up'];
-
 const pags = [{to: '/index', name:'Home'}, {to: '/cities', name:'Cities'} ];
 const settingsLogo = [{to: '/login', name:'Log In'}, {to: '/signup', name:'Sign Up'}];
 

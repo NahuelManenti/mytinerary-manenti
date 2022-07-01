@@ -2,13 +2,13 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const sendVerification = require('./sendVerification')
 const crypto = require('crypto')
-
+const jwt = require('jsonwebtoken')
 
 const userController = {
 
    
     signUpUser: async (req, res) => {
-        let { name, lastName, email, password, from, userPhoto, country, role} = req.body.userData 
+        let { name, lastName, email, password, from, userPhoto, country} = req.body.userData 
 
         try { // trata
 
@@ -41,7 +41,7 @@ const userController = {
             // si el usuario no existe lo registramos de 0
             } else {
                 const hashedPassword = bcryptjs.hashSync(password, 10) 
-                const newUser = await new User({ 
+                const newUser = await new User ({ 
                     name,
                     lastName,
                     email, 
@@ -98,12 +98,13 @@ const userController = {
                                 email: userExists.email,
                                 from: from,
                             }
-                            console.log(userData)
+                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60* 60*24 }) //1 hora
+                            // console.log(userData)
                             await userExists.save()
                             res.json({
                                 success: true,
                                 from: from,
-                                response: { userData },
+                                response: {token, userData },
                                 message: 'Welcome back ' + userData.name,
                             })
                         } else {
@@ -128,10 +129,11 @@ const userController = {
                                 from: from,
                             }
                             await userExists.save()
+                            const token = jwt.sign({...userData}, process.env.SECRET_KEY, {expiresIn: 60*60*24 })
                             res.json({
                                 success: true,
                                 from: from,
-                                response: { userData}, //token eliminado de pdf porque todavia no lo usamos
+                                response: {token, userData},
                                 message: 'Welcome back ' + userData.name ,
                             })
                         } else {
@@ -147,6 +149,30 @@ const userController = {
                 res.json({ success: false, messaje: 'Something went wrong. Try again after a few minutes.'})
             }
         },
+        signOutUser: async (req, res) => {
+            const email = req.body.closeData
+            const user = await User.findOne({email})
+            await user.save()
+            res.json(console.log(email+' sign out!'))
+        },
+    
+        verifyToken:(req, res) => {
+            //console.log(req.user)
+            if (!req.err) {
+            res.json({
+                success: true,
+                response: {id: req.user.id,
+                    name:req.user.name,
+                    email:req.user.email,
+                    userPhoto:req.user.userPhoto,
+                    from:"token"},
+                message:"Hi! Welcome back "+req.user.name}) 
+            } else {
+                res.json({
+                    success:false,
+                    message:"sign in please!"}) 
+            }
+        },
     
         verifyMail: async (req, res) => {
             const { string } = req.params
@@ -156,7 +182,7 @@ const userController = {
             if (user) {
                 user.verification = true
                 await user.save()
-                res.redirect('http://localhost:3000')
+                res.redirect('http://localhost:3000/login')
             }
             else { res.json({
                 success: false,

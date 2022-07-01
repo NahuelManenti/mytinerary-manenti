@@ -9,9 +9,10 @@ import {useDispatch, useSelector} from 'react-redux'
 
 export default function SnackBar () {
 
-    const message = useSelector(store => store.userReducer.snackbar)
+    const snackbar = useSelector(store => store.userReducer.snackbar)
     const dispatch = useDispatch()
-  // console.log(message)
+
+   
     const handleClose = () => {
         dispatch({
             type: 'message',
@@ -21,19 +22,23 @@ export default function SnackBar () {
     const action = (
         <Box className='fredokaFont' sx={{
             width: '100%',
-            backgroundColor: message.success ? 'rgb(036, 173, 009)':'rgb(255, 000, 000)',
+            backgroundColor: snackbar.success ? 'green' : 'red',
             color: 'white',
             borderRadius: '4px',
             padding: '4px',
             fontWeight: '400'}}>
-            {(typeof message.message) === "string" ? (<p>{message.message}</p>) : <div>{message.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
+            {(typeof snackbar.message) === "string" ? (<p>{snackbar.message}</p>) : <div>{snackbar.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
             }
         </Box>
     )
     return (
         <Snackbar
-            open={message.view}
-            autoHideDuration={4000}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+            open={snackbar.view}
+            autoHideDuration={2000}
             onClose={handleClose}
             action={action}
             message={
@@ -44,6 +49,5 @@ export default function SnackBar () {
         />
     )
 }
-
 
 
