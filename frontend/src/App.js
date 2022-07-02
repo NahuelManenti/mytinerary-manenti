@@ -16,7 +16,7 @@ import PageLogin from './pages/PageLogin';
 import PageSignUp from './pages/PageSignUp';
 import SnackBar from './components/SnackBar';
 import userActions from './redux/actions/userActions';
-// import {connect} from 'react-redux'
+import { useSelector } from 'react-redux';
 
 
 function App() {
@@ -30,13 +30,13 @@ function App() {
             if(localStorage.getItem('token')!==null){
             const token = localStorage.getItem('token')
             dispatch(userActions.verifyToken(token))
-          }
+          }// eslint-disable-next-line
       },[])
 
  
 
 
-//  const UserRegister = useSelector(store => store.userReducer.user)
+  const UserRegister = useSelector(store => store.userReducer.user)
  
 
 
@@ -51,8 +51,9 @@ function App() {
             <Route path='/cities' element={<PageCities />}  />
             <Route path='/index' element={<PageHome />}  />
             <Route path='/cities/:idCardsCountris' element={<PageCitiesDetails />}  />
-            <Route path='/login' element={<PageLogin />} />
+            {/* <Route path='/login' element={<PageLogin />} /> */}
             <Route path='/signup' element={<PageSignUp />}  />
+            {UserRegister ? <Route path='/login' element={<PageCities />} /> : <Route path='/login' element={<PageLogin />} />}
           </Routes>
           <SnackBar/>
           <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>
@@ -67,25 +68,3 @@ function App() {
 export default App;
 
 
-
-
-// useEffect(() => {
-//   if(localStorage.getItem('token')!== null) {
-//       const token = localStorage.getItem("token")
-//       props.verifyToken(token)
-//   }
-// },[])
-
-// useEffect( () => {
-// dispatch(cityActions.getCities())
-// // eslint-disable-next-line
-// },[])
-// const mapDispatchToProps = {
-// 	verifyToken: userActions.verifyToken,
-// }
-
-// const mapStateToProps = (state) => {
-//     return {
-//       user: state.userReducer.user
-//     }
-//   }

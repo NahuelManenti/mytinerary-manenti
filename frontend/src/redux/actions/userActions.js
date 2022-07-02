@@ -7,7 +7,7 @@ let urlLocalHost = 'http://localhost:4000/'
         //console.log(userData)
         return async (dispatch, getState) => {
             const res = await axios.post(urlLocalHost+'api/auth/signUp', {userData})
-            console.log(res)
+            // console.log(res)
             dispatch({
                 type: 'message',
                 payload: {
@@ -39,14 +39,13 @@ let urlLocalHost = 'http://localhost:4000/'
                     }
                 })
             }
-            return res
         } 
     },
      signOutUser: (closeData) => {
         // console.log(closeData)
         return async (dispatch, getState) => {
-            const res = axios.post(urlLocalHost+'api/auth/signOut',{closeData})
-            // console.log(res)
+            await axios.post(urlLocalHost+'api/auth/signOut',{closeData})
+            //  console.log(res)
             localStorage.removeItem('token')
             dispatch({
                 type: 'user',
@@ -55,7 +54,7 @@ let urlLocalHost = 'http://localhost:4000/'
         }   
     },
     verifyToken: (token) => {
-        console.log(token)
+        // console.log(token)
         return async (dispatch, getState) => {
             //console.log(token)
             await axios.get(urlLocalHost+'api/auth/loginToken', {headers: {'Authorization': 'Bearer '+token}} )

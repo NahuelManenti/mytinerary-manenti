@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
+import PersonIcon from '@mui/icons-material/Person'
 import { Link as LinkRouter } from 'react-router-dom';
 import '../style/Navbar.css';
 import SignOut from './SignOut';
@@ -26,7 +27,7 @@ const settingsLogo = [{to: '/login', name:'Log In'}, {to: '/signup', name:'Sign 
 const Navbar = () => {
 
   const UserRegister = useSelector(store => store.userReducer.user)
-
+  //  console.log(UserRegister)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -136,7 +137,10 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 3 }}>
-                <Avatar alt="" src="./public/avatar-ico" />
+              {UserRegister ?
+                <Avatar  src={UserRegister.userPhoto} /> :
+                <PersonIcon />
+              }
               </IconButton>
             </Tooltip>
             <Menu
