@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 
 import {useDispatch, useSelector} from 'react-redux'
-import userActions from '../redux/actions/userActions'
+// import userActions from '../redux/actions/userActions'
 
 export default function SnackBar () {
 
@@ -23,13 +23,11 @@ export default function SnackBar () {
         })
     }
     const action = (
-        <Box className='fredokaFont' sx={{
-            width: '100%',
+        <Box className='snackBarStyle' sx={{
+            minwidth: '10%',
             backgroundColor: snackbar.success ? 'green' : 'red',
             color: 'white',
-            borderRadius: '4px',
-            padding: '4px',
-            fontWeight: '400'}}>
+            fontWeight: '800'}}>
             {(typeof snackbar.message) === "string" ? (<p>{snackbar.message}</p>) : <div>{snackbar.message.map((message,index) =><p key={index}>{message.message}</p>)}</div>
             }
         </Box>
@@ -41,7 +39,7 @@ export default function SnackBar () {
             horizontal: 'left',
           }}
             open={snackbar.view}
-            autoHideDuration={2000}
+            autoHideDuration={3000}
             onClose={handleClose}
             action={action}
             message={
