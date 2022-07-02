@@ -14,12 +14,19 @@ import MenuItem from '@mui/material/MenuItem';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import { Link as LinkRouter } from 'react-router-dom';
 import '../style/Navbar.css';
+import SignOut from './SignOut';
+import { useSelector } from 'react-redux';
 
 
 const pags = [{to: '/index', name:'Home'}, {to: '/cities', name:'Cities'} ];
 const settingsLogo = [{to: '/login', name:'Log In'}, {to: '/signup', name:'Sign Up'}];
 
+
+
 const Navbar = () => {
+
+  const UserRegister = useSelector(store => store.userReducer.user)
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -148,7 +155,10 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settingsLogo.map((setting, index) => (
+              {UserRegister ?
+              <SignOut handleCloseUserMenu={handleCloseUserMenu}/>
+              :
+                settingsLogo.map((setting, index) => (
                 <MenuItem key={index} onClick={handleCloseUserMenu}>
                   <LinkRouter to={setting.to}>
                   <Typography textAlign="center">{setting.name}</Typography>

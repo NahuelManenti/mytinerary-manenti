@@ -42,18 +42,18 @@ let urlLocalHost = 'http://localhost:4000/'
             return res
         } 
     },
-    //  signOutUser: (closeData) => {
-    //     console.log(closeData)
-    //     return async (dispatch, getState) => {
-    //         const res = axios.post(urlLocalHost+'api/auth/signOut',{closeData})
-    //         console.log(res)
-    //         localStorage.removeItem('token')
-    //         dispatch({
-    //             type: 'user',
-    //             payload: null
-    //         })
-    //     }   
-    // },
+     signOutUser: (closeData) => {
+        // console.log(closeData)
+        return async (dispatch, getState) => {
+            const res = axios.post(urlLocalHost+'api/auth/signOut',{closeData})
+            // console.log(res)
+            localStorage.removeItem('token')
+            dispatch({
+                type: 'user',
+                payload: null
+            })
+        }   
+    },
     verifyToken: (token) => {
         console.log(token)
         return async (dispatch, getState) => {

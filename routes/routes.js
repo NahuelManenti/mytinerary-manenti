@@ -7,7 +7,7 @@ const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} 
 const tineraryController = require('../controllers/tineraryControllers')
 const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
 const userController = require('../controllers/userControllers')
-const {signUpUser,logInUser,verifyMail,verifyToken} = userController
+const {signUpUser,logInUser,verifyMail,verifyToken,signOutUser} = userController
 
 
 
@@ -45,8 +45,8 @@ Router.route('/auth/signUp')
 Router.route('/auth/logIn')
 .post(logInUser)
 
-// Router.route('/auth/signOut')
-// .post(signOutUser)
+Router.route('/auth/signOut')
+.post(signOutUser)
 
 Router.route('/verify/:string')
 .get(verifyMail)
