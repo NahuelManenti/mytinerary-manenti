@@ -52,8 +52,9 @@ function App() {
             <Route path='/index' element={<PageHome />}  />
             <Route path='/cities/:idCardsCountris' element={<PageCitiesDetails />}  />
             {/* <Route path='/login' element={<PageLogin />} /> */}
-            <Route path='/signup' element={<PageSignUp />}  />
+            {/* <Route path='/signup' element={<PageSignUp />}  /> */}
             {UserRegister ? <Route path='/login' element={<PageCities />} /> : <Route path='/login' element={<PageLogin />} />}
+            {UserRegister ? <Route path='/signup' element={<PageCities />} /> : <Route path='/signup' element={<PageSignUp />} />}
           </Routes>
           <SnackBar/>
           <ScrollToTop style={{backgroundColor:"transparent", borderRadius:"50%", boxShadow:"none"}} smooth component={<FileUploadIcon sx={{color:"#21539e", backgroundColor:"#000000", borderRadius:"50%", fontSize:"7vh"}}/>}/>

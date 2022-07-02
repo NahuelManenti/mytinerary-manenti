@@ -10,7 +10,7 @@ export default function GoogleSignUp() {
 
     async function handleCallbackResponse(response) {
         // console.log(response.credential);
-        let userObject = jwt_decode(response.credential);
+        let  userObject = jwt_decode(response.credential);
         // console.log(userObject);
          dispatch(userActions.signUpUser({
             name: userObject.given_name,
@@ -34,7 +34,7 @@ export default function GoogleSignUp() {
         google.accounts.id.renderButton(
             document.getElementById('buttonDiv'),
             { theme: "outline", size: "medium" }
-        )
+        )// eslint-disable-next-line
     },[]);
 
     return (

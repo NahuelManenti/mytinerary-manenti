@@ -22,7 +22,7 @@ let urlLocalHost = 'http://localhost:4000/'
         //console.log(userLogin)
         return async (dispatch, getState) => {
             const res = await axios.post(urlLocalHost+'api/auth/logIn',{userLogin})
-            console.log(res.data)
+            // console.log(res.data)
             if(res.data.success) {
                 localStorage.setItem('token',res.data.response.token)
                 dispatch({
