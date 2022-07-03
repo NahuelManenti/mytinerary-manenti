@@ -26,9 +26,9 @@ export default function GoogleLogIn() {
             callback: handleCallbackResponse
         });
 
-        google.accounts.id.renderButton(
+            google.accounts.id.renderButton(
             document.getElementById('buttonDiv'),
-            { theme: "outline", size: "medium" }
+            { theme: "outline", size: "medium", locale: "EN", text:"signin_with" }
         );// eslint-disable-next-line
     },[])
 

@@ -27,7 +27,7 @@ const settingsLogo = [{to: '/login', name:'Log In'}, {to: '/signup', name:'Sign 
 const Navbar = () => {
 
   const UserRegister = useSelector(store => store.userReducer.user)
-  //  console.log(UserRegister)
+    // console.log(UserRegister)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -138,7 +138,7 @@ const Navbar = () => {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 3 }}>
               {UserRegister ?
-                <Avatar  src={UserRegister.userPhoto} /> :
+                <Avatar referrerPolicy="no-referrer" src={UserRegister.userPhoto} /> :
                 <PersonIcon />
               }
               </IconButton>

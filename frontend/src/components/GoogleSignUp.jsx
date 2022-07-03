@@ -33,7 +33,7 @@ export default function GoogleSignUp() {
 
         google.accounts.id.renderButton(
             document.getElementById('buttonDiv'),
-            { theme: "outline", size: "medium" }
+            { theme: "outline", size: "medium", locale: "EN", text:"signup_with" }
         )// eslint-disable-next-line
     },[]);
 
