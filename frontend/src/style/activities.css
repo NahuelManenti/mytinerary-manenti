@@ -18,3 +18,7 @@
 .borderActivity{
     border-radius: 15px;
 }
+.borderActivityNot{
+    color: red !important;
+
+}

@@ -14,6 +14,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Badge from '@mui/material/Badge';
 import '../style/Tineraryes.css'
 import Activities from './Activities';
+import ActivitiesNotFound from './ActivitiesNotFound'
 
 
 
@@ -100,8 +101,8 @@ export default function Tineraryes(props) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '80%'}} className='width60'> 
-            <Activities allActivities = {props.itineraryId}></Activities> 
-                <Typography variant="h5" className='fredokaFont' sx={{margin: '16px', padding: '8px', textAlign: 'center', color: 'white', backgroundColor: 'rgb(120, 73, 48)'}}>See more</Typography>
+            {props.itineraryId.length >0 ? <Activities allActivities = {props.itineraryId}></Activities> : <ActivitiesNotFound/> }
+                <Typography variant="h5" className='fredokaFont' sx={{margin: '16px', padding: '8px', textAlign: 'center', color: 'white', backgroundColor: 'rgb(120, 73, 48)'}}>©</Typography>
                 
             </Collapse>
         </Card> 

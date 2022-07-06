@@ -1,14 +1,11 @@
 
-import Typography from '@mui/material/Typography';
+
 import Box from '@mui/material/Box'
 import '../style/activities.css'
 import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
+
 
 
 export default function Activities (allActivities) {
@@ -18,7 +15,8 @@ export default function Activities (allActivities) {
 
     return (
         <Box className='containerActivities'>
-        {activities.allActivities.map( everyAct =>(
+         
+          {activities.allActivities.map( everyAct =>(
           <ImageListItem key={everyAct._id} className='imgActivities'>
             <img className='borderActivity'
               src={everyAct.activity}
@@ -29,7 +27,9 @@ export default function Activities (allActivities) {
               title={everyAct.name}
             />
           </ImageListItem>
-        ))}
+          ))} 
+ 
+        
       </Box>
     );
   }
