@@ -15,6 +15,7 @@ import Tineraryes from '../components/Tineraryes';
 import CardDetails from '../components/CardDetails';
 
 
+
 export default function PageCitiesDetails() {
 
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function PageCitiesDetails() {
     const CitySearch = useSelector(store => store.cityReducer.oneCity)
     const tinerarySearch = useSelector(store => store.tineraryReducer.filterTin)
 
+    console.log(tinerarySearch)
     const {idCardsCountris} = useParams()
     const toTopSmooth = ()=>{
         window.scroll({
@@ -47,12 +49,14 @@ export default function PageCitiesDetails() {
           tinerarySearch?.map((tinerary, index)=>
       <Tineraryes key={index}
         itinerary={tinerary.itinerary}
+        itineraryId={tinerary.itineraryId}
         managerPhoto={tinerary.managerPhoto} 
         managerName={tinerary.managerName} 
         price={tinerary.price} 
         time={tinerary.time} 
         likes={tinerary.likes}
         tags={tinerary.tags}
+        
       ></Tineraryes>
       )) : (<TinerariesNotSearch/>)}
       <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch?._id} >

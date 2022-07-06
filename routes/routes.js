@@ -8,6 +8,8 @@ const tineraryController = require('../controllers/tineraryControllers')
 const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
 const userController = require('../controllers/userControllers')
 const {signUpUser,logInUser,verifyMail,verifyToken,signOutUser} = userController
+const activityController = require('../controllers/activityControllers')
+const {getActivities,uploadActivity,deleteAct,modifyAct,oneActivity,findActFromTin,multiplesActivities} = activityController
 
 
 
@@ -24,6 +26,8 @@ Router.route("/multiplesCities")
 .post(multiplesCities)
 Router.route("/multiplesTineraris")
 .post(multiplesTineraris)
+Router.route("/multiplesActivities")
+.post(multiplesActivities)
 
 
 Router.route('/tineraries')
@@ -37,7 +41,6 @@ Router.route('/tineraries/:id')
 
 Router.route('/tineraries/cities/:id')
 .get(findTinFromCity)
-
 
 Router.route('/auth/signUp')
 .post(validator, signUpUser)
@@ -53,5 +56,17 @@ Router.route('/verify/:string')
 
 Router.route('/auth/loginToken')
 .get(passport.authenticate('jwt', {session:false}),verifyToken)
+
+Router.route('/activities')
+.get(getActivities)
+.post(uploadActivity)
+
+Router.route('/activities/:id')
+.delete(deleteAct)
+.put(modifyAct)
+.get(oneActivity)
+
+Router.route('/activities/tineraries/:id')
+.get(findActFromTin)
 
 module.exports= Router

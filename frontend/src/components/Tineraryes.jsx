@@ -7,13 +7,13 @@ import CardActions from '@mui/material/CardActions'
 import {Box} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import CardExpand from '../components/CardExpand';
 import {useState} from "react"
 import IconButton from '@mui/material/IconButton'
 import {styled} from '@mui/material/styles'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Badge from '@mui/material/Badge';
 import '../style/Tineraryes.css'
+import Activities from './Activities';
 
 
 
@@ -100,7 +100,7 @@ export default function Tineraryes(props) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '80%'}} className='width60'> 
-  <CardExpand ></CardExpand> {/*//CardExpand = {tinerarySearch}  */}
+            <Activities allActivities = {props.itineraryId}></Activities> 
                 <Typography variant="h5" className='fredokaFont' sx={{margin: '16px', padding: '8px', textAlign: 'center', color: 'white', backgroundColor: 'rgb(120, 73, 48)'}}>See more</Typography>
                 
             </Collapse>

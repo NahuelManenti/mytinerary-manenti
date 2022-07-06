@@ -10,6 +10,7 @@ const tinerariesSchema = new mongoose.Schema ({
     tags: {type:Array, required:true},
     description: {type:String},
     likes: {type:Array},
+    itineraryId:[{type: mongoose.Types.ObjectId , ref:'activities'}]
 })
 
 const Tineraries = mongoose.model('tineraries',tinerariesSchema) 

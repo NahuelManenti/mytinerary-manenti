@@ -51,7 +51,7 @@ const tineraryController = {
         let tineraries 
         let error = null 
         try { 
-            tineraries = await Tineraries.find({city:cityId}) 
+            tineraries = await Tineraries.find({city:cityId}).populate("itineraryId" )
         } catch (err) {
             error = err
             console.log(error)
@@ -74,6 +74,7 @@ const tineraryController = {
                     managerPhoto: item.managerPhoto,
                     managerName: item.managerName,
                     itinerary: item.itinerary,
+                    itineraryId: item.itineraryId,
                     price: item.price,
                     time: item.time,
                     tags: item.tags,
