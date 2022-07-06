@@ -55,6 +55,21 @@ const tineraryActions = {
         }
     },
 
+    likeDislike: (id) => {
+        const token = localStorage.getItem('token')
+        return async() => {
+            try {
+                const res = await axios.put(urlLocalHost+`api/tineraries/likeDislike/${id}`,{},
+                    {headers: {Authorization: "Bearer "+token}}
+                )
+                //console.log(res.data.response)
+                return res.data.response
+            }catch (err) {
+                console.log(err)
+            }
+        }
+    }
+
 
 }
 

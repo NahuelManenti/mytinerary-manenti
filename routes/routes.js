@@ -5,7 +5,7 @@ const passport = require('../config/passport')
 const citiesControllers = require('../controllers/citiesControllers');
 const {getCities, getOneCity, addCity, modifyCity, removeCity, multiplesCities} = citiesControllers
 const tineraryController = require('../controllers/tineraryControllers')
-const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity, multiplesTineraris} = tineraryController
+const {getTineraries,uploadTinerary,deleteTin,oneTinerary,findTinFromCity,multiplesTineraris,likeDislike} = tineraryController
 const userController = require('../controllers/userControllers')
 const {signUpUser,logInUser,verifyMail,verifyToken,signOutUser} = userController
 const activityController = require('../controllers/activityControllers')
@@ -68,5 +68,9 @@ Router.route('/activities/:id')
 
 Router.route('/activities/tineraries/:id')
 .get(findActFromTin)
+
+Router.route('/tineraries/likeDislike/:id')
+.put(passport.authenticate('jwt', {session:false}), likeDislike)
+
 
 module.exports= Router

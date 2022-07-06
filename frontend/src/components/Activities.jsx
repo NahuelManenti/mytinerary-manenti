@@ -11,7 +11,7 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 export default function Activities (allActivities) {
 
     const activities = allActivities
-    console.log(activities)
+    //console.log(activities)
 
     return (
         <Box className='containerActivities'>

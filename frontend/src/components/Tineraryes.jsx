@@ -7,15 +7,18 @@ import CardActions from '@mui/material/CardActions'
 import {Box} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import IconButton from '@mui/material/IconButton'
 import {styled} from '@mui/material/styles'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import Badge from '@mui/material/Badge';
+// import Badge from '@mui/material/Badge';
 import '../style/Tineraryes.css'
 import Activities from './Activities';
 import ActivitiesNotFound from './ActivitiesNotFound'
-
+import { useDispatch } from 'react-redux'
+import tineraryActions from '../redux/actions/tineraryActions'
+import { useSelector } from 'react-redux';
+import FavoriteIcon from '@mui/icons-material/Favorite'
 
 
 const ExpandMore = styled((props) => {
@@ -29,20 +32,36 @@ const ExpandMore = styled((props) => {
   }),
   }));
 
-  const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      right: -3,
-      top: 13,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: '0 4px',
-    },
-  }));
+  
 
 export default function Tineraryes(props) {
+
+
+  const [reload, setReload] = React.useState(false)
+  const [likes, setLikes] = React.useState(props.likes)
+
+  const UserRegister = useSelector(store => store.userReducer.user)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(tineraryActions.oneTinerary(props.idTineraryes))
+    .then(response => setLikes(response.likes))
+    // eslint-disable-next-line
+  },[!reload])
+  
+  const toLike =  async (event) => {
+    event.preventDefault();
+    await dispatch(tineraryActions.likeDislike(props.idTineraryes))
+    setReload(!reload)
+    }
+
+
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     }
+ 
 
 
 
@@ -86,11 +105,25 @@ export default function Tineraryes(props) {
             <Typography variant="h5" >{props.managerName}</Typography>
             <Box >
             <Typography variant="subtitle1" > {props.tags}</Typography>
-              <IconButton aria-label="cart" >
-                <StyledBadge badgeContent={props.likes} color="secondary">
-                  <FavoriteBorderIcon />
-                </StyledBadge>
-              </IconButton>
+
+
+
+      {UserRegister?
+              <IconButton aria-label="cart" onClick={toLike} >
+            {likes.includes(UserRegister.id) ?
+                 <FavoriteIcon  color="secondary"/>:
+                  <FavoriteBorderIcon/>}
+                  <Typography className=''> {likes.length} </Typography>
+                </IconButton> :
+                <IconButton aria-label="cart" >
+                  <FavoriteBorderIcon/>
+                  <Typography className=''> {likes.length} </Typography>
+                </IconButton>
+            }
+
+
+
+
               <Typography variant="subtitle2" >price: {props.price} - Duration: {props.time}hs⌚  </Typography>  
             </Box>
             
@@ -110,7 +143,14 @@ export default function Tineraryes(props) {
 }
 
 
-
+// const StyledBadge = styled(Badge)(({ theme }) => ({
+//   '& .MuiBadge-badge': {
+//     right: -3,
+//     top: 13,
+//     border: `2px solid ${theme.palette.background.paper}`,
+//     padding: '0 4px',
+//   },
+// }));
 
 
 

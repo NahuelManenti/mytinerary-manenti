@@ -26,6 +26,7 @@ const tineraryController = {
 
     deleteTin: async (req,res) => {
         const id = req.params.id
+        // console.log(id)
         await Tineraries.findOneAndDelete({_id:id}) 
     },
 
@@ -35,6 +36,7 @@ const tineraryController = {
         let error = null 
         try { 
             tinerary = await Tineraries.findOne({_id:tineraryId})
+            // .populate("comments.userId", {name:1,email:1,userPhoto:1})
         } catch (err) {
             error = err
             console.log(error)
@@ -90,6 +92,38 @@ const tineraryController = {
             error: error
         })
     },
+
+    likeDislike: async (req,res) => {
+        // console.log(req)
+        let tineraryId = req.params.id 
+        let user = req.user.id
+        //console.log(tineraryId)
+        //console.log(user)
+        try { 
+            let tinerary = await Tineraries.findOne({_id:tineraryId}) 
+           // console.log(tinerary)
+            if (tinerary.likes.includes(user)) {
+                Tineraries.findOneAndUpdate({_id:tineraryId}, {$pull:{likes:user}}, {new:true})
+                    .then(response => res.json({
+                        response: response.likes, 
+                        success: true
+                    }))
+                    .catch(error => console.log(error))
+            } else {
+                Tineraries.findOneAndUpdate({_id:tineraryId}, {$push:{likes:user}}, {new:true})
+                    .then(response => res.json({
+                        response: response.likes, 
+                        success: true
+                    }))
+                    .catch(error => console.log(error))
+            }
+        } catch (error) {
+            res.json({
+                response: error,
+                success: false
+            })
+        } 
+    }
 
 }
 

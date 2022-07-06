@@ -153,7 +153,7 @@ const userController = {
         },
     
         verifyToken:(req, res) => {
-            console.log(req.user)
+           // console.log(req.user)
             if (req.user) {
             res.json({
                 success: true,

@@ -27,7 +27,7 @@ export default function PageCitiesDetails() {
     const CitySearch = useSelector(store => store.cityReducer.oneCity)
     const tinerarySearch = useSelector(store => store.tineraryReducer.filterTin)
 
-    console.log(tinerarySearch)
+    //console.log(tinerarySearch)
     const {idCardsCountris} = useParams()
     const toTopSmooth = ()=>{
         window.scroll({
@@ -48,6 +48,7 @@ export default function PageCitiesDetails() {
           {tinerarySearch.length > 0 ? (
           tinerarySearch?.map((tinerary, index)=>
       <Tineraryes key={index}
+        idTineraryes={tinerary._id}
         itinerary={tinerary.itinerary}
         itineraryId={tinerary.itineraryId}
         managerPhoto={tinerary.managerPhoto} 
