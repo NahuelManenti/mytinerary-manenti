@@ -42,11 +42,11 @@ const tineraryActions = {
     },
 
     findFromCity: (id) => {
-        //console.log(id);
+    //console.log(id);
         return async(dispatch, getState) => {
             try {
                 const res = await axios.get(urlLocalHost+`api/tineraries/cities/${id}`)
-                //console.log(answer.data);
+                //console.log(res.data);
                 dispatch({type:'FILTER_TINERARIES', payload:res.data.response.tineraries})
                 // console.log(res)
             }catch (err) {
@@ -67,6 +67,41 @@ const tineraryActions = {
             }catch (err) {
                 console.log(err)
             }
+        }
+    },
+    addComment: (commentaries) => {
+        const token = localStorage.getItem('token')
+        return async (dispatch, getState) => {
+            const res = await axios.post(urlLocalHost+`api/tineraries/comment`,{...commentaries},
+                {headers: {'Authorization': "Bearer "+token}}
+            )
+            dispatch({type: 'message', payload: {view: true, message: res.data.message, success: res.data.success}
+            })
+            return res.data.response
+        }
+    },
+
+    modifyComment: (comment) => {
+        const token = localStorage.getItem('token')
+        return async (dispatch, getState) => {
+            const res = await axios.put(urlLocalHost+`api/tineraries/comment`,{...comment},
+            {headers: {Authorization: "Bearer "+token}}
+        )
+        dispatch({type: 'message', payload: {view: true, message: res.data.message, success: res.data.success}
+        })
+        return res.data.response
+        }
+    },
+
+    deleteComment: (id) => {
+        const token = localStorage.getItem('token')
+            return async (dispatch, getState) => {
+                const res = await axios.post(urlLocalHost+`api/tineraries/comment/${id}`,{},
+                {headers: {Authorization: "Bearer "+token}}
+            )
+            dispatch({type: 'message', payload: {view: true, message: res.data.message, success: res.data.success}
+            })
+            return res.data.response
         }
     }
 

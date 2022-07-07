@@ -36,7 +36,7 @@ const tineraryController = {
         let error = null 
         try { 
             tinerary = await Tineraries.findOne({_id:tineraryId})
-            // .populate("comments.userId", {name:1,email:1,userPhoto:1})
+            .populate("comments.userId", {name:1,email:1,userPhoto:1})
         } catch (err) {
             error = err
             console.log(error)

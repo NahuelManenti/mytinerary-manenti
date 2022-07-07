@@ -19,6 +19,7 @@ import { useDispatch } from 'react-redux'
 import tineraryActions from '../redux/actions/tineraryActions'
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import Comments from './Comments';
 
 
 const ExpandMore = styled((props) => {
@@ -36,9 +37,9 @@ const ExpandMore = styled((props) => {
 
 export default function Tineraryes(props) {
 
-
-  const [reload, setReload] = React.useState(false)
-  const [likes, setLikes] = React.useState(props.likes)
+  //console.log(props)
+  const [reload, setReload] = useState(false)
+  const [likes, setLikes] = useState(props.likes)
 
   const UserRegister = useSelector(store => store.userReducer.user)
 
@@ -106,8 +107,6 @@ export default function Tineraryes(props) {
             <Box >
             <Typography variant="subtitle1" > {props.tags}</Typography>
 
-
-
       {UserRegister?
               <IconButton aria-label="cart" onClick={toLike} >
             {likes.includes(UserRegister.id) ?
@@ -121,9 +120,6 @@ export default function Tineraryes(props) {
                 </IconButton>
             }
 
-
-
-
               <Typography variant="subtitle2" >price: {props.price} - Duration: {props.time}hs⌚  </Typography>  
             </Box>
             
@@ -134,9 +130,9 @@ export default function Tineraryes(props) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '80%'}} className='width60'> 
-            {props.itineraryId.length >0 ? <Activities allActivities = {props.itineraryId}></Activities> : <ActivitiesNotFound/> }
-                <Typography variant="h5" className='fredokaFont' sx={{margin: '16px', padding: '8px', textAlign: 'center', color: 'white', backgroundColor: 'rgb(120, 73, 48)'}}>©</Typography>
-                
+            {props.itineraryId?.length  > 0 ? <Activities allActivities = {props.itineraryId}></Activities> : <ActivitiesNotFound/> }
+                <Typography variant="h5" className='registeredTrademark' sx={{margin: '15px', padding: '2px', textAlign: 'center', color: 'black' }}>Comments</Typography>
+                <Comments allProps = {props}  ></Comments> 
             </Collapse>
         </Card> 
   )

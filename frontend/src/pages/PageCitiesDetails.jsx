@@ -37,7 +37,7 @@ export default function PageCitiesDetails() {
         
       })}
       
-
+//console.log(tinerarySearch)
   return (
  <>
     <Navbar></Navbar>
@@ -45,7 +45,7 @@ export default function PageCitiesDetails() {
       <CardDetails 
         citySearch={CitySearch}>
       </CardDetails>
-          {tinerarySearch.length > 0 ? (
+          {tinerarySearch?.length > 0 ? (
           tinerarySearch?.map((tinerary, index)=>
       <Tineraryes key={index}
         idTineraryes={tinerary._id}
@@ -57,9 +57,11 @@ export default function PageCitiesDetails() {
         time={tinerary.time} 
         likes={tinerary.likes}
         tags={tinerary.tags}
+        comments={tinerary.comments}
         
       ></Tineraryes>
       )) : (<TinerariesNotSearch/>)}
+      
       <LinkRouter to = {`/cities`} onClick={toTopSmooth} key={CitySearch?._id} >
           <AwesomeButton  className="buttomBackCities" size="large" type="primary">Back to Cities</AwesomeButton>
       </LinkRouter>

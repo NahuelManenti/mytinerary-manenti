@@ -10,6 +10,8 @@ const userController = require('../controllers/userControllers')
 const {signUpUser,logInUser,verifyMail,verifyToken,signOutUser} = userController
 const activityController = require('../controllers/activityControllers')
 const {getActivities,uploadActivity,deleteAct,modifyAct,oneActivity,findActFromTin,multiplesActivities} = activityController
+const commentControllers = require('../controllers/commentControllers')
+const {addComment,modifyComment,deleteComment}= commentControllers
 
 
 
@@ -71,6 +73,18 @@ Router.route('/activities/tineraries/:id')
 
 Router.route('/tineraries/likeDislike/:id')
 .put(passport.authenticate('jwt', {session:false}), likeDislike)
+
+
+Router.route('/tineraries/comment/:id')
+.post(passport.authenticate('jwt', {session: false}), deleteComment)
+
+Router.route('/tineraries/comment')
+.put(passport.authenticate('jwt', {session: false}), modifyComment)
+.post(passport.authenticate('jwt', {session: false}), addComment)
+
+
+
+
 
 
 module.exports= Router
