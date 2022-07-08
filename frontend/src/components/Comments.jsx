@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { Link as LinkRouter } from "react-router-dom"
-import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add'
 import { useDispatch } from 'react-redux'
 import Avatar from '@mui/material/Avatar';
@@ -35,17 +35,25 @@ function Comments(props) {
 
 
     async function toAdd(event) {
-        const commentData = {
+        if (inputText !== ""){
+        let commentData = {
             itineraryIds: props.allProps.idTineraryes,
             comments: {
-                comment: inputText,
-                userId: props.user.id
-            }
+                        comment: inputText,
+                        userId: props.user.id
+                    }
         }
         await props.addComment(commentData)
         setInputText("")
         setReload(!reload)
     }
+    else{ dispatch({
+                    type: 'message',
+                    payload: { view: true, message: "Please write something", success: false}
+                })
+        }
+   }
+ 
 
     async function toModify(event) {
         const commentData = {
@@ -94,10 +102,10 @@ function Comments(props) {
                             <Typography variant='h6' sx={{ width: '100%', color: 'white' }}>{comment.userId.email}</Typography>
                             <Box sx={{ width: '100%', display: 'flex', paddingTop: '8px', paddingLeft: '0', flexDirection: 'column' }}>
                                 <textarea rows='2' onChange={(event) => setModifyCom(event.target.value)} defaultValue={comment.comment} className='inputTextComment' />
-                                <Box>
-                                    <EditIcon id={comment._id} onClick={toModify} sx={{ bgcolor: 'rgb(1, 80, 119)', '&:hover': { bgcolor: 'rgba(1, 80, 119, 0.7)' }, padding: '5px', color: 'white', width: '30px', height: '30px', borderRadius: '15px', margin: '5px', }} />
-                                    <DeleteIcon id={comment._id} onClick={toDelete} sx={{ bgcolor: 'rgb(1, 80, 119)', '&:hover': { bgcolor: 'rgba(1, 80, 119, 0.7)' }, padding: '5px', color: 'white', width: '30px', height: '30px', borderRadius: '15px', margin: '5px', }} />
-                                </Box>
+                                <Stack  sx={{ paddingLeft: '8px', width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                    <Button id={comment._id} onClick={toModify} sx={{ bgcolor: 'rgb(1, 80, 119)', '&:hover': { bgcolor: 'rgba(1, 80, 119, 0.7)' }, padding: '5px', color: 'white', width: '30px', height: '30px', borderRadius: '15px', margin: '5px' }}variant="outlined" color="success">Modify</Button>
+                                    <Button id={comment._id} onClick={toDelete} sx={{ bgcolor: 'rgb(1, 80, 119)', '&:hover': { bgcolor: 'rgba(1, 80, 119, 0.7)' }, padding: '5px', color: 'white', width: '30px', height: '30px', borderRadius: '15px', margin: '5px' }}variant="outlined" color="error">Delete</Button>
+                                </Stack>
                             </Box>
                         </Box>
                     </Box>
