@@ -7,6 +7,15 @@
     margin-right: 15px;
     flex-direction: row;
 }
+@media (max-width: 768px) {
+    .inputTextComment {
+        padding: 0px !important;
+        margin-right: 0px !important;
+        
+        
+        
+    }
+  }
 .inputTextCommentNotLoggin{
     font-family: 'Righteous', cursive !important;
     border-radius: 20px;
@@ -19,3 +28,129 @@
     border-radius: 20px;
     
 }
+
+  
+
+.inputTextComment {
+    --color: #0065a9;
+    padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid;
+    font-family: inherit;
+    /* text-transform: uppercase; */
+    color: var(--color);
+    z-index: 1;
+   }
+   
+   .inputTextComment::before, .inputTextComment::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 1s ease;
+   }
+   
+   .inputTextComment::before {
+    top: -1em;
+    left: -1em;
+   }
+   
+   .inputTextComment::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }
+   
+   .inputTextComment:hover::before, .inputTextComment:hover::after {
+    height: 410px;
+    width: 410px;
+   }
+   
+   .inputTextComment:hover {
+    color: rgb(255, 255, 255);
+   }
+   
+   .inputTextComment:active {
+    filter: brightness(.8);
+   }
+   /* ---------------------------- Buttoms------------------------------------------- */
+.buttonRefLoggin{
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+   .buttonRefLogginCommits {
+    height: 3em;
+    width: 8em;
+    border: none;
+    border-radius: 10em;
+    background: #002d5a;
+    font-size: 17px;
+    color: #b1adad !important;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 2vw;
+   }
+   
+   .buttonRefLogginCommits:hover {
+    animation: shake3856 0.3s linear infinite both;
+    color: rgb(255, 255, 255) !important;
+   }
+   
+   @keyframes shake3856 {
+    0% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   
+    20% {
+     -webkit-transform: translate(-2px, 2px);
+     transform: translate(-2px, 2px);
+    }
+   
+    40% {
+     -webkit-transform: translate(-2px, -2px);
+     transform: translate(-2px, -2px);
+    }
+   
+    60% {
+     -webkit-transform: translate(2px, 2px);
+     transform: translate(2px, 2px);
+    }
+   
+    80% {
+     -webkit-transform: translate(2px, -2px);
+     transform: translate(2px, -2px);
+    }
+   
+    100% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   }
+   
+
+
+   /* ------------------Mediaqueries-------------------------- */
+
+    @media (max-width: 768px) {
+        .mediaQueriesComments {
+            width: 50px !important;
+            height: 50px !important;
+            
+        }
+      }
+      

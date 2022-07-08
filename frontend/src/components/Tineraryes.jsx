@@ -38,10 +38,11 @@ const ExpandMore = styled((props) => {
 export default function Tineraryes(props) {
 
   //console.log(props)
-  const [reload, setReload] = useState(false)
+  
   const [likes, setLikes] = useState(props.likes)
-
+  const [reload, setReload] = useState(false)
   const UserRegister = useSelector(store => store.userReducer.user)
+  const tinerarySearch = useSelector(store => store.tineraryReducer.filterTin)
 
   const dispatch = useDispatch()
 
@@ -49,14 +50,14 @@ export default function Tineraryes(props) {
     dispatch(tineraryActions.oneTinerary(props.idTineraryes))
     .then(response => setLikes(response.likes))
     // eslint-disable-next-line
-  },[!reload])
+  },[reload,tinerarySearch])
   
+ 
   const toLike =  async (event) => {
     event.preventDefault();
     await dispatch(tineraryActions.likeDislike(props.idTineraryes))
     setReload(!reload)
     }
-
 
     const [expanded, setExpanded] = useState(false);
     const handleExpandClick = () => {
@@ -129,9 +130,9 @@ export default function Tineraryes(props) {
                     <ExpandMoreIcon sx={{bgcolor: 'rgb(196, 165, 126)', '&:hover': {bgcolor: 'rgba(196, 165, 126, 0.7)'}, padding: '5px', marginTop: '5px', marginBottom: '5px', color: 'white', width: '30px', height: '30px', borderRadius: '15px'}}/>
                 </ExpandMore>
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '80%'}} className='width60'> 
+            <Collapse in={expanded} timeout="auto" unmountOnExit sx={{width: '100%'}} > 
             {props.itineraryId?.length  > 0 ? <Activities allActivities = {props.itineraryId}></Activities> : <ActivitiesNotFound/> }
-                <Typography variant="h5" className='registeredTrademark' sx={{margin: '15px', padding: '2px', textAlign: 'center', color: 'black' }}>Comments</Typography>
+                <Typography variant="h5" className='registeredTrademark' sx={{margin: '15px', padding: '2px', textAlign: 'center', color: 'black' }}>Comments!</Typography>
                 <Comments allProps = {props}  ></Comments> 
             </Collapse>
         </Card> 
