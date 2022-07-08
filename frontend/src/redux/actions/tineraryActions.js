@@ -72,14 +72,45 @@ const tineraryActions = {
     addComment: (commentaries) => {
         const token = localStorage.getItem('token')
         return async (dispatch, getState) => {
+            
             const res = await axios.post(urlLocalHost+`api/tineraries/comment`,{...commentaries},
                 {headers: {'Authorization': "Bearer "+token}}
             )
             dispatch({type: 'message', payload: {view: true, message: res.data.message, success: res.data.success}
             })
-            return res.data.response
+            return res
         }
     },
+//     addComment: (comments) => {
+//         console.log(comments)
+//         const token = localStorage.getItem('token')
+//         return async (dispatch, getState) => {
+//         if (comments.comment !== "") {
+//             const res = await axios.post(urlLocalHost+`api/tineraries/comment`, {...comments},
+//             {headers: {'Authorization':`Bearer ${token}`}
+//         })
+//         dispatch({
+//             type:'message',
+//             payload: {
+//                 view:true,
+//                 message: res.data.message,
+//                 success: res.data.success
+//             }
+//         })
+//         return res
+//         }
+//     else {
+//         dispatch({
+//             type: 'message',
+//             payload: {
+//                 view: true,
+//                 message: "Add a comment to save it",
+//                 success: false
+//             }
+//         })
+//     }
+// }
+// },
 
     modifyComment: (comment) => {
         const token = localStorage.getItem('token')

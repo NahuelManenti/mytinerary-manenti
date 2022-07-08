@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
 import { useDispatch } from 'react-redux'
 import Avatar from '@mui/material/Avatar';
-// import { useSelector } from 'react-redux'
+ //import { useSelector } from 'react-redux'
 import '../style/Comments.css'
 //importo acciones de redux
 import { connect } from 'react-redux'
@@ -17,7 +17,7 @@ import tineraryActions from '../redux/actions/tineraryActions'
 function Comments(props) {
 
     // const UserRegister = useSelector(store => store.userReducer.user)
-
+    //const tinerarySearch = useSelector(store => store.tineraryReducer.filterTin)
 
     const [comments, setComments] = useState([]) //para guardar los comentarios de la BD
     const [inputText, setInputText] = useState("") //para guardar los comentarios nuevos
@@ -31,7 +31,7 @@ function Comments(props) {
         dispatch(tineraryActions.oneTinerary(props.allProps.idTineraryes))
             .then(response => setComments(response.comments))
         // eslint-disable-next-line
-    }, [!reload])
+    }, [reload])
 
 
     async function toAdd(event) {
