@@ -6,7 +6,7 @@ const cityActions = {
 
     getCities: () => {
         return async(dispatch, getState) => {
-            const res = await axios.get("http://localhost:4000/api/cities")
+            const res = await axios.get(urlLocalHost+"api/cities")
             dispatch({type:'GET_CITIES', payload:res.data.response.cities})
             
         }
@@ -33,7 +33,7 @@ const cityActions = {
     oneCity: (id) => {
         return async(dispatch, getState) => {
             try {
-                const res = await axios.get(`http://localhost:4000/api/cities/${id}`)
+                const res = await axios.get(urlLocalHost+`api/cities/${id}`)
                 // console.log(res)
                 dispatch({type:'ONE_CITY', payload:res.data.response})
             }catch (err) {
